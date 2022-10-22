@@ -1,0 +1,185 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Vecteurs
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.0
+
+- Class: text
+  Output: "La structure de données la plus simple et la plus courante dans R est le vecteur."
+
+- Class: text
+  Output: "Les vecteurs se présentent sous deux formes différentes : les vecteurs atomiques et les listes. Un vecteur atomique contient exactement un type de données, alors qu'une liste peut contenir plusieurs types de données. types de données. Nous explorerons plus en détail les vecteurs atomiques avant d'aborder les listes."
+
+- Class: text
+  Output: "Dans les leçons précédentes, nous avons entièrement traité des vecteurs numériques, qui sont un type de vecteur atomique. Les autres types de vecteurs atomiques comprennent les vecteurs logiques, les vecteurs caractères, les entiers, et les complexes. Dans cette leçon, nous allons examiner de plus près les vecteurs logiques et vecteurs de caractères."
+
+- Class: text
+  Output: "Les vecteurs logiques peuvent contenir les valeurs TRUE, FALSE, et NA (pour 'not available'). Ces valeurs sont générées à la suite de 'conditions' logiques. Expérimentons avec quelques conditions simples."
+
+- Class: cmd_question
+  Output: "Tout d'abord, créez un tableau numérique num_vect qui contient les valeurs 0, 5, 55, -10, et 6."
+  CorrectAnswer: num_vect <- c(0.5, 55, -10, 6)
+  AnswerTests: omnitest(correctExpr='num_vect <- c(0.5, 55, -10, 6)')
+  Hint: "Rappelez-vous que la fonction c() est utilisée pour créer un vecteur. Si vous oubliez comment l'utiliser, utilisez ?c pour accéder au fichier d'aide. N'oubliez pas d'affecter le résultat à une nouvelle variable appelée num_vect."
+
+- Class: cmd_question
+  Output: "Maintenant, créez une variable appelée tf qui obtient le résultat de num_vect < 1, ce qui est lu comme 'num_vect est inférieur à 1'."
+  CorrectAnswer: tf <- num_vect < 1
+  AnswerTests: omnitest(correctExpr='tf <- num_vect < 1')
+  Hint: "Utilisez tf <- num_vect < 1 pour affecter le résultat de num_vect < 1 à une variable appelée tf."
+
+- Class: mult_question
+  Output: "À quoi pensez-vous que tf ressemblera ?"
+  CorrectAnswer: un vecteur de 4 valeurs logiques
+  AnswerChoices: un vecteur de 4 valeurs logiques; une seule valeur logique
+  AnswerTests: omnitest(correctVal='un vecteur de 4 valeurs logiques')
+  Hint: "Vous vous souvenez de notre leçon sur l'arithmétique vectorielle ? Le thème était que R effectue de nombreuses opérations sur une base élément par élément. Nous avons appelé ces opérations \"vectorielles\"."
+
+- Class: cmd_question
+  Output: "Imprimez le contenu de tf maintenant."
+  CorrectAnswer: tf
+  AnswerTests: omnitest(correctExpr='tf')
+  Hint: "Il suffit de taper tf et d'appuyer sur Enter pour afficher sa valeur."
+
+- Class: text
+  Output: "L'énoncé num_vect < 1 est une condition et tf nous dit si chaque élément correspondant élément de notre tableau numérique num_vect satisfait à cette condition."
+
+- Class: text
+  Output: "Le premier élément de num_vect est 0,5, ce qui est inférieur à 1 et donc l'affirmation 0,5 < 1 est TRUE. Le deuxième élément de num_vect est 55, ce qui est supérieur à 1, donc l'énoncé 55 < 1 est FALSE. La même logique s'applique pour les troisième et quatrième éléments."
+
+- Class: cmd_question
+  Output: "Essayons-en une autre. Tapez num_vect >= 6 sans affecter le résultat à une nouvelle variable."
+  CorrectAnswer: num_vect >= 6
+  AnswerTests: omnitest(correctExpr='num_vect >= 6')
+  Hint: "Ne créez pas de nouvelle variable sur ce point. Nous voulons juste voir le résultat de num_vect >= 6. Assurez-vous qu'il n'y a pas d'espace entre les symboles `>` et `=`. Pensez à pensez à eux comme à un seul symbole représentant 'supérieur ou égal à'."
+
+- Class: text
+  Output: "Cette fois, nous demandons si chaque élément individuel de num_vect est supérieur ou égal à 6. Puisque seuls 55 et 6 sont supérieurs ou égaux à 6, les deuxième et quatrième éléments du résultat sont TRUE et les premier et troisième éléments sont FALSE."
+
+- Class: text
+  Output: "Les symboles `<` et `>=` dans ces exemples sont appelés \"opérateurs logiques\". Les autres opérateurs logiques comprennent `>`, `<=`, `==` pour l'égalité exacte, et `!=` pour l'inégalité."
+
+- Class: text
+  Output: "Si nous avons deux expressions logiques, A et B, nous pouvons demander si au moins l'une d'entre elles est TRUE avec A | B (logique 'ou' alias 'union') ou si elles sont toutes deux TRUE avec A & B (logique 'et' alias 'intersection'). Enfin, !A est la négation de A et est TRUE lorsque A est FALSE et vice versa."
+
+- Class: text
+  Output: "Il est bon de passer un peu de temps à jouer avec diverses combinaisons de ces opérateurs logiques jusqu'à ce que vous soyez à l'aise avec leur utilisation. Nous allons faire quelques exemples ici pour vous aider à démarrer."
+
+- Class: text
+  Output: "Faites de votre mieux pour prédire le résultat de chacune des affirmations suivantes. Vous pouvez utiliser un crayon et du papier pour les calculer si cela vous aide. Si vous êtes bloqué, devinez simplement et vous avez 50% de chances d'obtenir la bonne réponse !"
+
+- Class: mult_question
+  Output: "(3 > 5) & (4 == 4)"
+  CorrectAnswer: 'FALSE'
+  AnswerChoices: TRUE; FALSE
+  AnswerTests: omnitest(correctVal='FALSE')
+  Hint: "Décomposez ce problème en 2 parties. Le `&` au milieu indique que les DEUX morceaux sont TRUE. Votre travail consiste à déterminer si cette affirmation est exacte. Si oui, la condition entière est TRUE. Dans le cas contraire, elle est FALSE."
+
+- Class: mult_question
+  Output: "(TRUE == TRUE) | (TRUE == FALSE)"
+  CorrectAnswer: 'TRUE'
+  AnswerChoices: TRUE; FALSE
+  AnswerTests: omnitest(correctVal='TRUE')
+  Hint: "Décomposez ce problème en 2 parties. Le `|` au milieu indique qu'AU MOINS UN des morceaux est TRUE. Votre travail consiste à déterminer si cette affirmation est exacte. Si oui, la condition entière est TRUE. Sinon, c'est FALSE."
+
+- Class: mult_question
+  Output: "((111 >= 111) | !(TRUE)) & ((4 + 1) == 5)"
+  CorrectAnswer: 'TRUE'
+  AnswerChoices: TRUE; FALSE
+  AnswerTests: omnitest(correctVal='TRUE')
+  Hint: "C'est une question délicate. Rappelez-vous que le symbole `!` annule tout ce qui vient après lui. Il y a aussi un \"ordre des opérations\" à respecter. Les conditions qui sont entre parenthèses doivent être évaluées en premier. Ensuite, travaillez vers l'extérieur."
+
+- Class: text
+  Output: "Ne vous inquiétez pas si vous les trouvez délicats. Ils sont censés l'être. Travailler avec des instructions logiques dans R demande de la pratique, mais vos efforts seront récompensés dans les prochaines leçons (par exemple, les sous-ensembles et les structures de contrôle)."
+
+- Class: text
+  Output: "Les vecteurs de caractères sont également très courants dans R. Les guillemets sont utilisés pour distinguer les objets de caractères, comme dans l'exemple suivant."
+
+- Class: cmd_question
+  Output: "Créez un vecteur de caractères qui contient les mots suivants : \"Mon\", \"nom\", \"est\". N'oubliez pas d'entourer chaque mot de sa propre série de guillemets doubles, afin que R sache qu'il s'agit de chaînes de caractères. Stockez le vecteur dans une variable appelée mon_car."
+  CorrectAnswer: mon_car <- c("My", "name", "is")
+  AnswerTests: omnitest(correctExpr='mon_car <- c("My", "name", "is")')
+  Hint: "Tapez mon_car <- c(\"My\", \"name\", \"is\") pour créer une nouvelle variable appelée my_char qui contient un vecteur de caractères de longueur 3. Assurez-vous que les virgules séparant les mots sont EXTERNES aux guillemets doubles, sinon R pense que les virgules font partie des mots."
+
+- Class: cmd_question
+  Output: "Imprimez le contenu de mon_car pour voir à quoi il ressemble."
+  CorrectAnswer: mon_car
+  AnswerTests: omnitest(correctExpr='mon_car')
+  Hint: "Tapez mon_car pour voir son contenu."
+
+- Class: text
+  Output: "Pour l'instant, mon_car est un vecteur de caractères de longueur 3. Disons que nous voulons réunir les éléments de mon_car en une seule chaîne de caractères continue (c'est-à-dire un vecteur de caractères de longueur 1). Nous pouvons le faire à l'aide de la fonction paste()."
+
+- Class: cmd_question
+  Output: "Tapez paste(mon_car, collapse = \" \") maintenant. Assurez-vous qu'il y a un espace entre les guillemets dans l'argument `collapse`. Vous verrez pourquoi dans une seconde."
+  CorrectAnswer: paste(mon_car, collapse = " ")
+  AnswerTests: omnitest(correctExpr='paste(mon_car, collapse = " ")')
+  Hint: "Utilisez paste(mon_car, collapse = \" \") pour réduire les mots du vecteur afin qu'ils forment presque une phrase. Il doit y avoir un espace simple entre les guillemets doubles de l'argument `collapse` pour que les mots soient séparés par des espaces simples."
+
+- Class: text
+  Output: "L'argument `collapse` de la fonction paste() indique à R que lorsque nous réunissons les éléments du vecteur de caractères mon_car, nous souhaitons les séparer par des espaces simples."
+
+- Class: text
+  Output: "Il semble qu'il nous manque quelque chose.... Ah, oui ! Votre nom !"
+
+- Class: cmd_question
+  Output: "Pour ajouter (ou \"concaténer\") votre nom à la fin de mon_car, utilisez la fonction c() comme ceci : c(mon_car, \"votre_nom_ici\"). Placez votre nom entre guillemets doubles à l'endroit où j'ai mis \"votre_nom_ici\". Essayez maintenant, en stockant le résultat dans une nouvelle variable appelée mon_nom."
+  CorrectAnswer: mon_nom <- c(mon_car, "Swirl")
+  AnswerTests: var_is_a("character", "mon_nom"); expr_uses_func("c"); expr_creates_var("mon_nom");
+    val_has_length(4)
+  Hint: "Ajoutez votre nom à la fin du vecteur mon_car à l'aide de la fonction c().  Veillez à affecter le résultat à une nouvelle variable appelée mon_nom. Si votre nom était \"Swirl\", vous taperiez mon_nom <- c(mon_car, \"Swirl\")."
+
+- Class: cmd_question
+  Output: "Jetez un coup d'œil au contenu de mon_nom."
+  CorrectAnswer: mon_nom
+  AnswerTests: omnitest(correctExpr='mon_nom')
+  Hint: "Tapez mon_nom et appuyez sur Enter pour afficher son contenu."
+
+- Class: cmd_question
+  Output: "Maintenant, utilisez à nouveau la fonction paste() pour réunir les mots de mon_nom en une seule chaîne de caractères. N'oubliez pas de dire collapse = \" \" !"
+  CorrectAnswer: paste(mon_nom, collapse = " ")
+  AnswerTests: omnitest(correctExpr='paste(mon_nom, collapse = " ")')
+  Hint: "Utilisez paste(mon_nom, collapse = \" \") pour joindre les quatre mots ensemble, séparés par des espaces simples."
+
+- Class: text
+  Output: "Dans cet exemple, nous avons utilisé la fonction paste() pour réduire les éléments d'un seul vecteur de caractères. paste() peut également être utilisé pour joindre les éléments de plusieurs vecteurs de caractères."
+
+- Class: cmd_question
+  Output: "Dans le cas le plus simple, nous pouvons joindre deux vecteurs de caractères qui sont chacun de longueur 1 (c'est-à-dire joindre deux mots). Essayez paste(\"Bonjour\", \"monde !\", sep = \" \"), où l'argument `sep` indique à R que nous voulons séparer les éléments joints avec un seul espace."
+  CorrectAnswer: paste("Bonjour", "monde !", sep = " ")
+  AnswerTests: omnitest(correctExpr='paste("Bonjour", "monde !", sep = " ")')
+  Hint: "Entrez paste(\"Bonjour\", \"monde !\", sep = \" \") pour joindre les deux mots \"Bonjour\" et \"monde\", séparés par un espace unique. Il doit y avoir un espace simple entre les guillemets doubles dans l'argument `sep` de la fonction paste()."
+
+- Class: cmd_question
+  Output: "Pour un exemple légèrement plus compliqué, nous pouvons joindre deux vecteurs, chacun de longueur 3. Utilisez paste() pour joindre le vecteur d'entiers 1:3 au vecteur de caractères c(\"X\", \"Y\", \"Z\"). Cette fois, utilisez sep = \"\" pour ne laisser aucun espace entre les éléments joints."
+  CorrectAnswer: paste(1:3, c("X", "Y", "Z"), sep = "")
+  AnswerTests: any_of_exprs('paste(1:3, c("X", "Y", "Z"), sep = "")', 'paste(c(1:3), c("X", "Y", "Z"), sep = "")')
+  Hint: "Utilisez paste(1:3, c(\"X\", \"Y\", \"Z\"), sep = \"\") pour voir ce qui se passe lorsque nous joignons deux vecteurs de longueur égale à l'aide de paste()."
+
+- Class: text
+  Output: "À votre avis, que se passera-t-il si nos vecteurs sont de longueur différente ? (Indice : nous avons parlé de ce sujet dans une leçon précédente.)"
+
+- Class: cmd_question
+  Output: "Recyclage de vecteurs ! Essayez paste(LETTERS, 1:4, sep = \"-\"), où LETTERS est une variable prédéfinie dans R contenant un vecteur de caractères des 26 lettres de l'alphabet anglais."
+  CorrectAnswer: paste(LETTERS, 1:4, sep = "-")
+  AnswerTests: omnitest(correctExpr='paste(LETTERS, 1:4, sep = "-")')
+  Hint: "Tapez paste(LETTRES, 1:4, sep = \"-\") pour voir comment R recycle le vecteur 1:4 pour correspondre à la la longueur de LETTRES. Remarquez que nous utilisons cette fois `-` comme séparateur au lieu d'un d'un simple espace."
+
+- Class: text
+  Output: "Comme le vecteur de caractères LETTERS est plus long que le vecteur numérique 1:4, R recycle simplement, ou répète, 1:4 jusqu'à ce qu'il corresponde à la longueur de LETTERS."
+
+- Class: text
+  Output: "Il convient également de noter que le tableau numérique 1:4 est transformé en tableau de caractères par la fonction paste()."
+
+- Class: text
+  Output: "Nous aborderons la coercition dans une autre leçon, mais tout ce que cela signifie, c'est que les chiffres 1, 2, 3, et 4 dans la sortie ci-dessus ne sont plus des chiffres pour R, mais plutôt des caractères \"1\", \"2\", \"3\", et \"4\"."
+
+- Class: mult_question
+  Output: "Souhaitez-vous informer quelqu'un par e-mail de la réussite de cette leçon ?"
+  CorrectAnswer: NULL
+  AnswerChoices: Oui; Non
+  AnswerTests: notify()
+  Hint: NULL
+  
