@@ -1,0 +1,126 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Séquences de nombres
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.0
+
+- Class: text
+  Output: Dans cette leçon, vous apprendrez à créer des séquences de nombres dans R.
+
+- Class: cmd_question
+  Output: La façon la plus simple de créer une séquence de nombres dans R est d'utiliser l'opérateur `:`. Tapez 1:20 pour voir comment cela fonctionne.
+  CorrectAnswer: '1:20'
+  AnswerTests: omnitest(correctExpr='1:20')
+  Hint: Tapez 1:20 sans espace. Veillez à utiliser des deux-points ordinaires et NON un point-virgule.
+
+- Class: cmd_question
+  Output: Cela nous a donné tous les nombres entiers compris entre (et incluant) 1 et 20. Nous pouvons également l'utiliser pour créer une séquence de nombres réels. Par exemple, essayez pi:10.
+  CorrectAnswer: pi:10
+  AnswerTests: omnitest(correctExpr='pi:10')
+  Hint: Entrez pi:10 et voyez ce qui se passe. pi est une constante prédéfinie dans R qui prend la valeur 3.1415....
+
+- Class: text
+  Output: Le résultat est un vecteur de nombres réels commençant par pi (3,142...) et augmentant par incréments de 1. La limite supérieure de 10 n'est jamais atteinte, puisque le prochain nombre de notre séquence serait supérieur à 10.
+
+- Class: cmd_question
+  Output: 'Que se passe-t-il si nous faisons 15:1 ? Faites un essai pour le savoir.'
+  CorrectAnswer: '15:1'
+  AnswerTests: omnitest(correctExpr='15:1')
+  Hint: Tapez 15:1 et appuyez sur Enter.
+
+- Class: text
+  Output: Il comptait à rebours par incréments de 1 ! Il est peu probable que nous voulions ce comportement, mais néanmoins, il est bon de savoir comment cela peut arriver.
+
+- Class: text
+  Output: "Rappelez-vous que si vous avez des questions sur une fonction R particulière, vous pouvez accéder à sa documentation avec un point d'interrogation suivi du nom de la fonction : ?nom_de_la_fonction_ici. Cependant, dans le cas d'un opérateur comme les deux points utilisés ci-dessus, vous devez entourer le symbole de points arrière comme ceci : ?`:`. (REMARQUE : la touche de retour arrière (`) est généralement située dans le coin supérieur gauche d'un clavier, au-dessus de la touche Tab. Si vous n'avez pas de touche de retour arrière, vous pouvez utiliser des guillemets ordinaires)."
+
+- Class: cmd_question
+  Output: Regardez la documentation pour `:` maintenant.
+  CorrectAnswer: ?`:`
+  AnswerTests: any_of_exprs('?`:`', "?':'", '?":"')
+  Hint: "Afin d'afficher la documentation d'un symbole tel que l'opérateur deux-points, vous devez utiliser des retours arrière (ou des guillemets). Cela permet à R de savoir que vous n'essayez pas d'utiliser le symbole dans la commande. Voici à quoi cela ressemble : ?`:`. N'oubliez pas le point d'interrogation devant."
+
+- Class: text
+  Output: Souvent, nous désirons avoir plus de contrôle sur une séquence que nous créons que ce que l'opérateur `:` nous donne. La fonction seq() répond à ce besoin.
+
+- Class: cmd_question
+  Output: L'utilisation la plus basique de seq() fait exactement la même chose que l'opérateur `:`. Essayez seq(1, 20) pour vous en rendre compte.
+  CorrectAnswer: seq(1, 20)
+  AnswerTests: omnitest(correctExpr='seq(1, 20)')
+  Hint: Tapez seq(1, 20) et appuyez sur Entrée. L'espace après la virgule n'est pas nécessaire, mais elle est recommandée car elle tend à rendre votre code moins encombré.
+
+- Class: cmd_question
+  Output: Cela nous donne le même résultat que pour 1:20. Cependant, disons qu'à la place nous voulons plutôt un vecteur de nombres allant de 0 à 10, incrémenté de 0,5. seq(0, 10, by=0.5) fait exactement cela. Essayez-le.
+  CorrectAnswer: seq(0, 10, by=0.5)
+  AnswerTests: omnitest(correctExpr='seq(0, 10, by=0.5)')
+  Hint: Vous utilisez toujours la fonction seq() ici, mais cette fois avec un argument supplémentaire qui indique à R que vous voulez incrémenter votre séquence de 0,5. Essayez seq(0, 10, by=0.5).
+
+- Class: cmd_question
+  Output: Ou peut-être que l'on ne se soucie pas de l'incrément et que l'on veut juste une séquence de 30 nombres entre 5 et 10. de 30 nombres entre 5 et 10. seq(5, 10, length=30) fait l'affaire. Essayez-le et stockez le résultat dans une nouvelle variable appelée ma_seq.
+  CorrectAnswer: ma_seq <- seq(5, 10, length=30)
+  AnswerTests: omnitest(correctExpr='ma_seq <- seq(5, 10, length=30)')
+  Hint: "Vous utilisez la même fonction ici, mais en changeant ses arguments pour obtenir des différents. Veillez à stocker le résultat dans une nouvelle variable appelée ma_seq, comme ceci : ma_seq <- seq(5, 10, length=30)."
+
+- Class: cmd_question
+  Output: Pour confirmer que ma_seq a une longueur de 30, nous pouvons utiliser la fonction length(). Essayez-le maintenant.
+  CorrectAnswer: length(ma_seq)
+  AnswerTests: omnitest(correctExpr='length(ma_seq)')
+  Hint: Utilisez length( ma_seq) pour afficher la longueur de la variable ma_seq.
+
+- Class: text
+  Output: Imaginons que nous ne connaissions pas la longueur de ma_seq, mais que nous voulions générer une séquence d'entiers de 1 à N, où N représente la longueur du vecteur ma_seq. En d'autres termes, nous voulons un nouveau vecteur (1, 2, 3, ...) qui a la même longueur que ma_seq.
+
+- Class: cmd_question
+  Output: "Il y a plusieurs façons de procéder. L'une d'entre elles consiste à combiner l'opérateur `:` et la fonction length() comme ceci : 1:length(ma_seq). Faites un essai d'essayer."
+  CorrectAnswer: 1:length(ma_seq)
+  AnswerTests: omnitest(correctExpr='1:length(ma_seq)')
+  Hint: Essayez 1:length( ma_seq), sans affecter le résultat à une nouvelle variable.
+
+- Class: cmd_question
+  Output: Une autre option consiste à utiliser seq(along.with = ma_seq). Faites-en l'essai.
+  CorrectAnswer: seq(along.with = ma_seq)
+  AnswerTests: omnitest(correctExpr='seq(along.with = ma_seq)')
+  Hint: Tapez seq(along.with = ma_seq). Remarquez que nous utilisons la même fonction seq(), mais avec un argument différent appelé `along.with`. Cela indique à R que vous voulez une séquence "avec" la séquence ma_seq. N'oubliez pas que vous pouvez taper ?seq si vous avez des questions sur la fonction seq().
+
+- Class: cmd_question
+  Output: Cependant, comme c'est le cas pour de nombreuses tâches courantes, R dispose d'une fonction intégrée distincte à cet effet, appelée seq_along(). Tapez seq_along(ma_seq) pour la voir en action.
+  CorrectAnswer: seq_along(ma_seq)
+  AnswerTests: omnitest(correctExpr='seq_along(ma_seq)')
+  Hint: La fonction seq_along() est une variante de la fonction seq(). Essayez seq_along(ma_seq) pour obtenir le même résultat d'une manière différente.
+
+- Class: text
+  Output: Il existe souvent plusieurs approches pour résoudre le même problème, en particulier dans R. Les approches simples qui impliquent moins de saisie sont généralement les meilleures. Il est également important que votre code soit lisible, afin que vous et les autres puissent comprendre ce qui se passe sans trop de difficultés.
+
+- Class: text
+  Output: Il existe souvent plusieurs approches pour résoudre le même problème, en particulier en R. Les approches simples qui impliquent moins de saisie sont généralement les meilleures. Il est également important que votre code soit lisible, afin que vous et les autres puissiez comprendre ce qui se passe sans trop de difficultés.
+
+- Class: text
+  Output: Une autre fonction liée à la création de séquences de nombres est rep(), qui signifie "répliquer". Examinons quelques utilisations.
+
+- Class: cmd_question
+  Output: Si nous souhaitons créer un vecteur qui contient 40 zéros, nous pouvons utiliser rep(0, times = 40). Essayez-le.
+  CorrectAnswer: rep(0, times = 40)
+  AnswerTests: omnitest(correctExpr='rep(0, times = 40)')
+  Hint: Tapez rep(0, times = 40) pour créer un vecteur contenant 40 zéros.
+
+- Class: cmd_question
+  Output: Si, au lieu de cela, nous voulons que notre vecteur contienne 10 répétitions du vecteur (0, 1, 2), nous pouvons faire rep(c(0, 1, 2), times = 10). Allez-y.
+  CorrectAnswer: rep(c(0, 1, 2), times = 10)
+  AnswerTests: omnitest(correctExpr='rep(c(0, 1, 2), times = 10)')
+  Hint: Essayez rep(c(0, 1, 2), times = 10) pour une variation différente sur le même thème. Veillez à utiliser la fonction c() pour indiquer à R que les nombres 0, 1 et 2 constituent un vecteur.
+
+- Class: cmd_question
+  Output: Enfin, disons qu'au lieu de répéter le vecteur (0, 1, 2) encore et encore, nous voulons que notre vecteur contienne 10 zéros, puis 10 uns, puis 10 deux. Nous pouvons le faire avec l'argument `each`. Essayez rep(c(0, 1, 2), each = 10).
+  CorrectAnswer: rep(c(0, 1, 2), each = 10)
+  AnswerTests: omnitest(correctExpr='rep(c(0, 1, 2), each = 10)')
+  Hint: Tapez rep(c(0, 1, 2), each = 10) pour voir comment l'argument `each` de la fonction rep() modifie légèrement son comportement.
+
+- Class: mult_question
+  Output: Souhaitez-vous informer quelqu'un de votre réussite à cette cette leçon par e-mail ?
+  CorrectAnswer: NULL
+  AnswerChoices: Oui; Non
+  AnswerTests: notify()
+  Hint: NULL
+  
