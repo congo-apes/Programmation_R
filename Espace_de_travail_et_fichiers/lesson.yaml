@@ -1,0 +1,194 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Espace de travail et fichiers
+  Author: David Kane, translated by GTAP/MDK
+  Type: Standard
+  Organization: Williams College, translated by GTAP/MDK
+  Version: 0.1.2
+
+- Class: text
+  Output: "Dans cette leçon, vous apprendrez à examiner votre espace de travail local dans R et commencer à explorer la relation entre votre espace de travail et le système de fichier de votre machine."
+
+- Class: text
+  Output: "Parce que les différents systèmes d'exploitation ont des conventions différentes en ce qui concerne les chemins d'accès aux fichiers, les résultats de ces commandes peuvent varier d'une machine à l'autre."
+
+- Class: text
+  Output: Cependant, il est important de noter que R fournit une API commune (un ensemble commun de commandes) pour interagir avec les fichiers, de sorte que votre code fonctionnera sur différents types d'ordinateurs.
+
+- Class: text
+  Output: Entrons dans le vif du sujet pour vous faire une idée du fonctionnement de ces fonctions spéciales !
+
+- Class: cmd_question
+  Output: Déterminez le répertoire utilisé par votre session R comme répertoire de travail comme répertoire de travail actuel en utilisant getwd().
+  CorrectAnswer: getwd()
+  AnswerTests: omnitest(correctExpr='getwd()')
+  Hint: Tapez getwd() pour déterminer le répertoire de travail actuel.
+
+- Class: cmd_question
+  Output: Lister tous les objets de votre espace de travail local en utilisant ls().
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Tapez ls() pour afficher tous les objets de votre espace de travail local.
+
+- Class: text
+  Output: Certaines commandes R sont les mêmes que leurs équivalents sous Linux ou sur un Mac. Les systèmes d'exploitation Linux et Mac sont basés sur un système d'exploitation d'exploitation appelé Unix. C'est toujours une bonne idée d'en apprendre plus sur Unix !
+
+- Class: cmd_question
+  Output: Assignez 9 à x en utilisant x <- 9.
+  CorrectAnswer: x <- 9
+  AnswerTests: omnitest(correctExpr='x <- 9')
+  Hint: Tapez x <- 9 pour assigner 9 à x.
+
+- Class: cmd_question
+  Output: Maintenant, regardez les objets qui sont dans votre espace de travail en utilisant ls().
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Tapez ls() pour afficher tous les objets de votre espace de travail.
+
+- Class: cmd_question
+  Output: Lister tous les fichiers de votre répertoire de travail en utilisant list.files() ou dir().
+  CorrectAnswer: list.files()
+  AnswerTests: any_of_exprs('list.files()', 'dir()')
+  Hint: Tapez list.files() pour obtenir tous les fichiers de votre répertoire de travail.
+
+- Class: cmd_question
+  Output: Au fur et à mesure de cette leçon, vous devriez examiner la page d'aide pour chaque nouvelle fonction. Consultez la page d'aide de list.files à l'aide de la commande ?list.files.
+  CorrectAnswer: ?list.files
+  AnswerTests: any_of_exprs('?list.files', '?dir', 'help("list.files")', 'help("dir")')
+  Hint: Tapez ?list.files pour voir la page d'aide.
+
+- Class: text
+  Output: L'une des parties les plus utiles de tout fichier d'aide R est la section Voir aussi (voir aussi). Lisez cette section pour les fichiers list.file. Certaines de ces fonctions peuvent être être utilisées dans des parties ultérieures de cette leçon.
+
+- Class: text
+  Output: L'utilisation de la fonction args() sur un nom de fonction est aussi un moyen pratique de voir quels arguments une fonction peut prendre.  
+
+
+- Class: cmd_question
+  Output: Utilisez la fonction args() pour déterminer les arguments de list.files().
+  CorrectAnswer: args(list.files)
+  AnswerTests: omnitest(correctExpr='args(list.files)')
+  Hint: Tapez args(list.files) pour voir les arguments de list.files.
+
+
+- Class: cmd_question
+  Output: Assignez la valeur du répertoire de travail actuel à une variable appelée "vieux.rep".
+  CorrectAnswer: vieux.rep <- getwd()
+  AnswerTests: omnitest(correctExpr='vieux.rep <- getwd()')
+  Hint: Tapez vieux.rep <- getwd() pour affecter la valeur du répertoire de travail de travail actuel à une variable appelée "vieux.rep".
+
+- Class: text
+  Output: Nous utiliserons vieux.dir à la fin de cette leçon pour retourner à l'endroit l'endroit où nous avons commencé. De nombreuses fonctions de requêtes comme getwd() ont la propriété utile qu'elles retournent la réponse à la question en tant que résultat de la la fonction.
+
+- Class: cmd_question
+  Output: Utilisez dir.create() pour créer un répertoire dans le répertoire de travail actuel appelé de travail actuel appelé "testrep".
+  CorrectAnswer: dir.create("testdir")
+  AnswerTests: omnitest(correctExpr='dir.create("testrep")')
+  Hint: Tapez dir.create("testrep") pour créer un répertoire appelé "testrep" dans le de travail actuel appelé "testrep".
+
+- Class: text
+  Output: Nous ferons tout notre travail dans ce nouveau répertoire et nous le supprimerons après que nous aurons terminé. C'est l'analogue de R à "Ne prenez que des photos, ne laissez que des empreintes."
+
+- Class: cmd_question
+  Output: Définissez votre répertoire de travail à "testrep" avec la commande setwd().
+  CorrectAnswer: setwd("testrep")
+  AnswerTests: any_of_exprs('setwd("testrep")', 'setwd("testrep/")')
+  Hint: Utilisez setwd("testrep") pour définir votre répertoire de travail à "testrep".
+
+- Class: text
+  Output: "En général, vous voudrez que votre répertoire de travail soit quelque part raisonnable, peut-être créé pour le projet spécifique sur lequel vous travaillez. En fait, organiser votre travail en paquets R à l'aide de RStudio est une excellente option. excellente option. Consultez RStudio à l'adresse http://www.rstudio.com/."
+
+- Class: cmd_question
+  Output: Créez un fichier dans votre répertoire de travail appelé "montest.R" en utilisant la fonction file.create().
+  CorrectAnswer: file.create("montest.R")
+  AnswerTests: omnitest(correctExpr='file.create("montest.R")')
+  Hint: file.create("montest.R") fera l'affaire !
+
+- Class: cmd_question
+  Output: "Ce devrait être le seul fichier dans ce répertoire nouvellement créé. Nous allons vérifions cela en listant tous les fichiers du répertoire actuel."
+  CorrectAnswer: list.files()
+  AnswerTests: any_of_exprs('list.files()', 'dir()')
+  Hint: list.files() montre que le répertoire ne contient que montest.R.
+
+- Class: cmd_question
+  Output: Vérifiez si "montest.R" existe dans le répertoire de travail en utilisant la fonction file.exists().
+  CorrectAnswer: file.exists("montest.R")
+  AnswerTests: omnitest(correctExpr='file.exists("montest.R")')
+  Hint: Utilisez file.exists(" montest.R ") pour vérifier qu'un fichier existe.
+
+- Class: text
+  Output: Ce genre de fonctions est excessif pour une utilisation interactive. Mais, si vous exécutez un programme qui passe en boucle une série de fichiers et effectue un traitement sur chacun d'entre eux, vous voudrez vérifier que chacun existe avant d'essayer de le traiter.
+
+- Class: cmd_question
+  Output: Accédez aux informations sur le fichier "montest.R" en utilisant file.info().
+  CorrectAnswer: file.info("montest.R")
+  AnswerTests: omnitest(correctExpr='file.info("montest.R")')
+  Hint: file.info("montest.R") fera l'affaire !
+
+- Class: text
+  Output: Vous pouvez utiliser l'opérateur $ --- par exemple, file.info(" montest.R ")$mode --- pour sélectionner des éléments spécifiques.
+
+- Class: cmd_question
+  Output: Changez le nom du fichier "montest.R" en "montest2.R" en utilisant la fonction file.rename().
+  CorrectAnswer: file.rename("montest.R", "montest2.R")
+  AnswerTests: any_of_exprs('file.rename("montest.R", "montest2.R")', 'file.rename(from = "montest.R", to = "montest2.R")')
+  Hint: file.rename("montest.R", "montest2.R") est la réponse. Une recherche sur Google en utilisant les mots clés de la question, ainsi que la lettre R, vous donnera souvent un bon indice.
+
+- Class: text
+  Output: "Votre système d'exploitation fournira des outils plus simples pour ce genre de tâches. de tâches, mais il est utile de pouvoir manipuler les fichiers de manière programmatique. est utile. Vous pourriez maintenant essayer de supprimer mytest.R en utilisant file.remove('montest.R'), mais cela ne fonctionnera pas puisque montest.R n'existe plus. n'existe plus. Vous l'avez déjà renommé."
+
+- Class: cmd_question
+  Output: Faites une copie de "montest2.R" appelée "montest3.R" en utilisant file.copy().
+  CorrectAnswer: file.copy("montest2.R", "montest3.R")
+  AnswerTests: any_of_exprs('file.copy("montest2.R", "montest3.R")', 'file.copy(from = "montest2.R", to = "montest3.R")')
+  Hint: file.copy("montest2.R", "montest3.R") fonctionne.
+
+- Class: text
+  Output: Vous avez maintenant deux fichiers dans le répertoire courant. Cela peut ne pas sembler très intéressant. Mais que se passerait-il si vous travailliez avec des dizaines, ou des millions, de fichiers individuels ? Dans ce cas, il serait absolument nécessaire de pouvoir agir de manière programmatique sur de nombreux fichiers serait absolument nécessaire. N'oubliez pas que vous pouvez, temporairement, quitter la leçon en tapant play() et ensuite revenir en tapant nxt().
+
+- Class: cmd_question
+  Output: Fournissez le chemin relatif vers le fichier "monstest3.R" en utilisant file.path().
+  CorrectAnswer: file.path("montest3.R")
+  AnswerTests: omnitest(correctExpr='file.path("montest3.R")')
+  Hint: file.path("montest3.R") fonctionne.
+
+- Class: cmd_question
+  Output: "Vous pouvez utiliser file.path pour construire des chemins de fichiers et de répertoires qui sont indépendants du système d'exploitation sur lequel votre code R est exécuté. Passez 'fichier1' et et 'fichier2' comme arguments à file.path pour créer un nom de chemin indépendant de la plate-forme."
+  CorrectAnswer: file.path("fichier1", "fichier2")
+  AnswerTests: omnitest(correctExpr='file.path("fichier1", "fichier2")')
+  Hint: file.path("fichier1", "fichier2") fonctionne.
+
+- Class: cmd_question
+  Output: "Jetez un coup d'œil à la documentation de dir.create en entrant ?dir.create . Remarquez l'argument 'recursive'. Afin de créer des répertoires imbriqués, 'recursive' doit être défini à TRUE."
+  CorrectAnswer: ?dir.create
+  AnswerTests: omnitest(correctExpr='?dir.create')
+  Hint: ?dir.create vous montrera les docs.
+
+- Class: cmd_question
+  Output: Créez un répertoire dans le répertoire de travail actuel appelé "testrep2" et un sous-répertoire pour celui-ci appelé "testrep3", le tout en une commande en utilisant dir.create() et file.path().
+  CorrectAnswer: dir.create(file.path("testrep2", "testrep3"), recursive = TRUE)
+  AnswerTests: omnitest(correctExpr='dir.create(file.path("testrep2", "testrep3"), recursive = TRUE)')
+  Hint: "dir.create(file.path('testrep2', 'testrep3'), recursive = TRUE) fera l'affaire. l'affaire. Si vous avez oublié l'argument récursif, la commande peut avoir la commande peut sembler fonctionner, mais elle ne crée pas le répertoire imbriqué."
+
+- Class: cmd_question
+  Output: Retournez à votre répertoire de travail original en utilisant setwd(). (Rappelez-vous que nous avons avons créé la variable old.dir avec le chemin complet du répertoire de travail original au début de ces questions.)
+  CorrectAnswer: setwd(vieux.rep)
+  AnswerTests: omnitest(correctExpr='setwd(vieux.rep)')
+  Hint: Utilisez setwd(vieux.rep).
+
+- Class: text
+  Output: "Il est souvent utile d'enregistrer les paramètres que vous aviez avant de commencer une analyse et d'y revenir à la fin. avant de commencer une analyse et d'y revenir à la fin. Cette astuce est Cette astuce est souvent utilisée à l'intérieur des fonctions. par() avec lesquels vous avez commencé, vous les modifiez un peu, puis vous les rétablissez aux valeurs originales à la fin. Ceci n'est pas la même chose que ce que nous avons fait ici, mais cela semble assez similaire pour être mentionné."
+
+- Class: text
+  Output: "Ne prenez que des résultats. Ne laissez que des hypothèses. Cela ressemble à \"Ne prenez que des photos. Ne laissez que des empreintes de pas.\" Mais cela n'a aucun sens ! Nos lecteurs peuvent sûrement trouver une meilleure devise..."
+
+- Class: text
+  Output: "Dans cette leçon, vous avez appris à examiner votre espace de travail R et à travailler avec le système de fichiers de votre machine depuis R. Merci de jouer !"
+
+- Class: mult_question
+  Output: Souhaitez-vous informer quelqu'un de votre réussite à cette cette leçon par e-mail ?
+  CorrectAnswer: NULL
+  AnswerChoices: Oui; Non
+  AnswerTests: notify()
+  Hint: NULL
+  
