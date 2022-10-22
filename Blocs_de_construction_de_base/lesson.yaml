@@ -1,9 +1,9 @@
 - Class: meta
   Course: Programmation R
   Lesson: Blocs de construction de base
-  Author: Nick Carchedi; translation by GTAP/MDK
+  Author: Nick Carchedi, translated by GTAP/MDK
   Type: Standard
-  Organization: JHU Biostat
+  Organization: JHU Biostat, translated by GTAP/MDK
   Version: 2.2.0
 
 - Class: text
