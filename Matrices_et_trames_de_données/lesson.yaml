@@ -1,0 +1,186 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Matrices et trames de données
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.0
+
+- Class: text
+  Output: "Dans cette leçon, nous allons couvrir les matrices et les trames de données. Tous deux représentent des types de données \"rectangulaires\", ce qui signifie qu'ils sont utilisés pour stocker des données tabulaires, avec des lignes et des colonnes."
+
+- Class: text
+  Output: "La principale différence, comme vous le verrez, est que les matrices ne peuvent contenir qu'une seule classe de données, alors que les trames de données peuvent se composer de nombreuses classes de données différentes."
+
+- Class: cmd_question
+  Output: "Créons un vecteur contenant les chiffres de 1 à 20 en utilisant l'opérateur `:`. Stockez le résultat dans une variable appelée mon_vecteur."
+  CorrectAnswer: mon_vecteur <- 1:20
+  AnswerTests: omnitest(correctExpr='mon_vecteur <- 1:20')
+  Hint: "Vous avez appris l'existence de l'opérateur `:` dans la leçon sur les séquences. Si vous vouliez créer un vecteur contenant les nombres 1, 2, et 3 (dans cet ordre), vous pourriez utiliser soit c(1, 2, 3), soit 1:3. Dans ce cas, nous voulons que les nombres 1 à 20 soient stockés dans une variable appelée mon_vecteur. Rappelez-vous également que vous n'avez pas besoin de la fonction c() lorsque vous utilisez `:`."
+
+- Class: cmd_question
+  Output: "Visualisez le contenu du vecteur que vous venez de créer."
+  CorrectAnswer: mon_vecteur
+  AnswerTests: omnitest(correctExpr='mon_vecteur')
+  Hint: "Tapez mon_vecteur pour voir son contenu."
+
+- Class: cmd_question
+  Output: "La fonction dim() nous indique les \"dimensions\" d'un objet. Que se passe-t-il si nous faisons dim(mon_vecteur) ? Faites un essai."
+  CorrectAnswer: dim(mon_vecteur)
+  AnswerTests: omnitest(correctExpr='dim(mon_vecteur)')
+  Hint: "Il suffit de taper dim(mon_vecteur) pour voir ce qui se passe."
+
+- Class: cmd_question
+  Output: "Clairement, ce n'est pas très utile ! Puisque mon_vecteur est un vecteur, il n'a pas d'attribut `dim` (donc il est juste NULL), mais nous pouvons trouver sa longueur en utilisant la fonction length(). Essayez-le maintenant."
+  CorrectAnswer: length(mon_vecteur)
+  AnswerTests: omnitest(correctExpr='length(mon_vecteur)')
+  Hint: "Tapez length(mon_vecteur) pour afficher la longueur du vecteur que vous venez de créer."
+
+- Class: cmd_question
+  Output: "Ah ! C'est ce que nous voulions. Mais, que se passe-t-il si nous donnons à mon_vecteur un attribut `dim` ? Faisons un essai. Type dim(mon_vecteur) <- c(4, 5)."
+  CorrectAnswer: dim(mon_vecteur) <- c(4, 5)
+  AnswerTests: omnitest(correctExpr='dim(mon_vecteur) <- c(4, 5)')
+  Hint: "Tapez dim(mon_vecteur) <- c(4, 5) pour donner à mon_vecteur un attribut `dim`."
+
+- Class: text
+  Output: "Ce n'est pas grave si cette dernière commande vous a paru un peu étrange. Elle devrait ! La fonction dim() vous permet d'obtenir OU de définir l'attribut `dim` d'un objet R. Dans ce cas, nous avons attribué la valeur c(4, 5) à l'attribut `dim` de mon_vecteur."
+
+- Class: cmd_question
+  Output: "Utilisez dim(mon_vecteur) pour confirmer que nous avons défini l'attribut `dim` correctement."
+  CorrectAnswer: dim(mon_vecteur)
+  AnswerTests: omnitest(correctExpr='dim(mon_vecteur)')
+  Hint: "Il suffit de taper dim(mon_vecteur) pour s'assurer que l'attribut `dim` a été défini."
+
+- Class: cmd_question
+  Output: "Une autre façon de voir cela est d'appeler la fonction attributes() sur mon_vecteur. Essayez-le maintenant."
+  CorrectAnswer: attributes(mon_vecteur)
+  AnswerTests: omnitest(correctExpr='attributes(mon_vecteur)')
+  Hint: "La commande attributes(mon_vecteur) vous montrera tous les attributs de l'objet mon_vecteur."
+
+- Class: text
+  Output: "Comme en cours de mathématiques, lorsqu'il s'agit d'un objet à 2 dimensions (pensez à un tableau rectangulaire), le premier nombre est le nombre de lignes et le second est le nombre de colonnes. Par conséquent, nous venons de donner à mon_vecteur 4 lignes et 5 colonnes."
+
+- Class: cmd_question
+  Output: "Mais, attendez ! Cela ne ressemble plus à un vecteur. Eh bien, ça ne l'est pas. Maintenant, c'est une matrice. Regardez maintenant le contenu de mon_vecteur pour voir à quoi il ressemble."
+  CorrectAnswer: mon_vecteur
+  AnswerTests: omnitest(correctExpr='mon_vecteur')
+  Hint: "Tapez mon_vecteur pour voir son contenu."
+
+- Class: cmd_question
+  Output: "Maintenant, confirmons qu'il s'agit bien d'une matrice en utilisant la fonction class(). Tapez class(mon_vecteur) pour voir ce que je veux dire."
+  CorrectAnswer: class(mon_vecteur)
+  AnswerTests: omnitest(correctExpr='class(mon_vecteur)')
+  Hint: "Tapez class(mon_vecteur) pour afficher la classe de mon_vecteur."
+
+- Class: cmd_question
+  Output: "Bien sûr, mon_vecteur est maintenant une matrice. Nous devons la stocker dans une nouvelle variable qui nous aidera à nous souvenir de ce qu'elle est. Stockez la valeur de mon_vecteur dans une nouvelle variable appelée ma_matrice."
+  CorrectAnswer: ma_matrice <- mon_vecteur
+  AnswerTests: omnitest(correctExpr='ma_matrice <- mon_vecteur')
+  Hint: "Puisque nous ne pouvons pas simplement changer le nom de notre variable mon_vecteur, nous allons affecter sa valeur à une nouvelle variable avec ma_matrice <- mon_vecteur."
+
+- Class: text
+  Output: "L'exemple que nous avons utilisé jusqu'à présent avait pour but d'illustrer le fait qu'une matrice est simplement un vecteur atomique avec un attribut de dimension. Une méthode plus directe pour créer la même matrice utilise la fonction matrix()."
+
+- Class: cmd_question
+  Output: "Faites apparaître le fichier d'aide de la fonction matrix() en utilisant maintenant la fonction `?`."
+  CorrectAnswer: ?matrix
+  AnswerTests: omnitest(correctExpr='?matrix')
+  Hint: "La commande ?matrix fera l'affaire."
+
+- Class: cmd_question
+  Output: "Maintenant, consultez la documentation de la fonction matrice et voyez si vous pouvez trouver comment créer une matrice contenant les mêmes chiffres (1-20) et dimensions (4 lignes, 5 colonnes) en appelant la fonction matrix(). Stockez le résultat dans une variable appelée ma_matrice2."
+  CorrectAnswer: ma_matrice2 <- matrix(1:20, nrow=4, ncol=5)
+  AnswerTests: calculates_same_value('matrix(1:20, nrow=4, ncol=5)'); expr_creates_var('ma_matrice2')
+  Hint: "Appelez la fonction matrix() avec trois arguments : 1:20, le nombre de lignes et le nombre de colonnes. Veillez à spécifier les arguments par leur nom correct et à stocker le résultat dans ma_matrice2 (et non dans ma_matrice)."
+
+- Class: cmd_question
+  Output: "Enfin, confirmons que ma_matrice et ma_matrice2 sont effectivement identiques. La fonction identical() nous dira si ses deux premiers arguments sont identiques. Essayez-la."
+  CorrectAnswer: identical(ma_matrice, ma_matrice2)
+  AnswerTests: any_of_exprs('identical(ma_matrice, ma_matrice2)', 'identical(ma_matrice2, ma_matrice)')
+  Hint: "Si vous n'êtes pas sûr de vous, consultez la documentation de identical() en utilisant la fonction `?`."
+
+- Class: text
+  Output: "Maintenant, imaginez que les chiffres de notre tableau représentent des mesures issues d'une expérience clinique, où chaque ligne représente un patient et chaque colonne une variable pour laquelle des mesures ont été effectuées."
+
+- Class: text
+  Output: "Nous pouvons vouloir étiqueter les lignes, afin de savoir quels numéros appartiennent à chaque patient de l'expérience. Une façon de le faire est d'ajouter une colonne à la matrice, qui contient les noms des quatre personnes."
+
+- Class: cmd_question
+  Output: "Commençons par créer un vecteur de caractères contenant les noms de nos patients : Bill, Gina, Kelly, et Sean. Rappelez-vous que les guillemets doubles indiquent à R que quelque chose est une chaîne de caractères. Stockez le résultat dans une variable appelée patients."
+  CorrectAnswer: patients <- c("Bill", "Gina", "Kelly", "Sean")
+  AnswerTests: omnitest(correctExpr='patients <- c("Bill", "Gina", "Kelly", "Sean")')
+  Hint: "Veillez à mettre en majuscule la première lettre de chaque nom et à stocker le résultat dans une variable appelée patients. Ne mélangez pas non plus l'ordre des patients ! Ce serait un désastre !"
+
+- Class: cmd_question
+  Output: "Nous allons maintenant utiliser la fonction cbind() pour \"combiner les colonnes\". Ne vous souciez pas de stocker le résultat dans une nouvelle variable. Appelez simplement cbind() avec deux arguments : le vecteur de patients et ma_matrice."
+  CorrectAnswer: cbind(patients, ma_matrice)
+  AnswerTests: omnitest(correctExpr='cbind(patients, ma_matrice)')
+  Hint: "Tapez cbind(patients, ma_matrice) pour ajouter les noms de nos patients à la matrice de chiffres."
+
+- Class: text
+  Output: "Il y a quelque chose de louche dans notre résultat ! Il semble que la combinaison du vecteur de caractères avec notre matrice de nombres a fait que tout soit placé entre guillemets. Cela signifie que nous nous retrouvons avec une matrice de chaînes de caractères, ce qui n'est pas bon."
+
+- Class: text
+  Output: "Si vous vous souvenez du début de cette leçon, je vous ai dit que les matrices ne peuvent contenir qu'UNE seule classe de données. Par conséquent, lorsque nous avons essayé de combiner un vecteur de caractères avec une matrice numérique, R a été contraint de \"contraindre\" les chiffres en caractères, d'où les guillemets."
+
+- Class: text
+  Output: "C'est ce qu'on appelle la \"coercition implicite\", car nous ne l'avons pas demandé. Cela s'est produit tout simplement. Mais pourquoi R n'a-t-il pas simplement converti les noms de nos patients en chiffres ? Je vous laisse réfléchir à cette question par vous-même."
+
+- Class: cmd_question
+  Output: "Il nous reste donc la question de savoir comment inclure les noms de nos patients dans le tableau sans détruire l'intégrité de nos données numériques. Essayez ce qui suit -- mes_data <- data.frame(patients, ma_matrice)."
+  CorrectAnswer: mes_data <- data.frame(patients, ma_matrice)
+  AnswerTests: omnitest(correctExpr='mes_data <- data.frame(patients, ma_matrice)')
+  Hint: "Tapez mes_data <- data.frame(patients, ma_matrice), afin que nous puissions explorer ce qui se passe."
+
+- Class: cmd_question
+  Output: "Affichez maintenant le contenu de mes_data pour voir ce que nous avons obtenu."
+  CorrectAnswer: mes_data
+  AnswerTests: omnitest(correctExpr='mes_data')
+  Hint: "Tapez mes_data pour afficher son contenu."
+
+- Class: text
+  Output: "Il semble que la fonction data.frame() nous ait permis de stocker notre vecteur de noms de caractères à côté de notre matrice de chiffres. C'est exactement ce que nous espérions !"
+
+- Class: text
+  Output: "En coulisse, la fonction data.frame() prend un nombre quelconque d'arguments et renvoie un objet unique de la classe `data.frame` qui est composé des objets originaux."
+
+- Class: cmd_question
+  Output: "Confirmons cela en appelant la fonction class() sur notre trames de données nouvellement créé."
+  CorrectAnswer: class(mes_data)
+  AnswerTests: omnitest(correctExpr='class(mes_data)')
+  Hint: "La fonction class prend un argument : l'objet dont vous voulez déterminer la classe."
+
+- Class: text
+  Output: "Il est également possible d'attribuer des noms aux lignes et colonnes individuelles d'un trames de données, ce qui présente une autre façon possible de déterminer quelle ligne de valeurs de notre tableau appartient à chaque patient."
+
+- Class: text
+  Output: "Toutefois, puisque nous avons déjà résolu ce problème, résolvons un autre problème en attribuant des noms aux colonnes de notre trames de données afin de savoir quel type de mesure chaque colonne représente."
+
+- Class: cmd_question
+  Output: "Comme nous avons six colonnes (y compris les noms des patients), nous devons d'abord créer un vecteur contenant un élément pour chaque colonne. Créez un vecteur de caractères appelé cnames qui contient les valeurs suivantes (dans l'ordre) : \"patient\", \"âge\", \"poids\", \"tension artérielle\", \"cote\", \"test\"."
+  CorrectAnswer: cnames <- c("patient", "âge", "poids", "tension artérielle", "cote", "test")
+  AnswerTests: omnitest(correctExpr='cnames <- c("patient", "âge", "poids", "tension artérielle", "cote", "test")')
+  Hint: "Assurez-vous que tous les noms sont en minuscules, entourés de guillemets doubles et séparés par des virgules. N'oubliez pas d'utiliser la fonction c()."
+
+- Class: cmd_question
+  Output: "Maintenant, utilisez la fonction colnames() pour définir l'attribut `colnames` de notre trames de données. Ceci est similaire à la façon dont nous avons utilisé la fonction dim() plus tôt dans cette leçon."
+  CorrectAnswer: colnames(mes_data) <- cnames
+  AnswerTests: omnitest(correctExpr='colnames(mes_data) <- cnames')
+  Hint: "Essayez colnames(mes_data) <- cnames."
+
+- Class: cmd_question
+  Output: "Voyons si cela a fait l'affaire. Imprimez le contenu de mes_data."
+  CorrectAnswer: mes_data
+  AnswerTests: omnitest(correctExpr='mes_data')
+  Hint: "Imprimez le contenu de mes_data sur la console."
+
+- Class: text
+  Output: "Dans cette leçon, vous avez appris les bases du travail avec deux structures de données très importantes et courantes : les matrices et les trames de données. Il y a encore beaucoup à apprendre et nous aborderons des sujets plus avancés, notamment en ce qui concerne les trames de données, dans les prochaines leçons."
+
+- Class: mult_question
+  Output: "Souhaitez-vous informer quelqu'un par e-mail de la réussite de cette leçon ?"
+  CorrectAnswer: NULL
+  AnswerChoices: Oui; Non
+  AnswerTests: notify()
+  Hint: NULL
+  
