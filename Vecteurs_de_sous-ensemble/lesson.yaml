@@ -1,0 +1,207 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Vecteurs de sous-ensemble
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.0
+
+- Class: text
+  Output: "Dans cette leçon, nous allons voir comment extraire des éléments d'un vecteur en fonction de certaines conditions que nous spécifions."
+
+- Class: text
+  Output: "Par exemple, il se peut que nous ne soyons intéressés que par les 20 premiers éléments d'un vecteur, ou que seuls les éléments qui ne sont pas NA, ou encore que seuls ceux qui sont positifs ou correspondent à une variable d'intérêt spécifique. À la fin de cette leçon, vous saurez comment gérer chacun de ces scénarios."
+
+- Class: cmd_question
+  Output: "J'ai créé pour vous un vecteur appelé x qui contient un ordre aléatoire de 20 nombres (issus d'une distribution normale standard) et de 20 NAs. Tapez x maintenant pour voir à quoi cela ressemble."
+  CorrectAnswer: x
+  AnswerTests: omnitest(correctExpr='x')
+  Hint: "Tapez x pour afficher son contenu."
+
+- Class: text
+  Output: "Pour indiquer à R que vous souhaitez sélectionner certains éléments particuliers (c'est-à-dire un \"sous-ensemble\") d'un vecteur, vous devez placer un \"vecteur d'index\" entre crochets, immédiatement après le nom du vecteur."
+
+- Class: cmd_question
+  Output: "Pour un exemple simple, essayez x[1:10] pour afficher les dix premiers éléments de x."
+  CorrectAnswer: x[1:10]
+  AnswerTests: omnitest(correctExpr='x[1:10]')
+  Hint: "Visualisez les dix premiers éléments de x avec x[1:10]."
+
+- Class: text
+  Output: "Il existe quatre types de vecteurs d'index : les vecteurs logiques, les vecteurs d'entiers positifs, les vecteurs d'entiers négatifs et les vecteurs de chaînes de caractères. Nous aborderons chacun de ces types dans cette leçon."
+
+- Class: text
+  Output: "Commençons par l'indexation avec des vecteurs logiques. Un scénario courant lorsque l'on travaille avec des données du monde réel est que nous voulons extraire tous les éléments d'un vecteur qui ne sont pas NA (c'est-à-dire des données manquantes). Rappelez-vous que is.na(x) donne un vecteur de valeurs logiques de la même longueur que x, les TRUEs correspondant aux valeurs NA de x et les FALSEs aux valeurs non-NA de x."
+
+- Class: mult_question
+  Output: "Que pensez-vous que x [is.na(x)] vous donnera ?"
+  AnswerChoices: Un vecteur de tous les NAs; Un vecteur sans NAs; Un vecteur de TRUEs et de FALSEs; Un vecteur de longueur 0
+  CorrectAnswer: Un vecteur de tous les NAs
+  AnswerTests: omnitest(correctVal="Un vecteur de tous les NAs")
+  Hint: "Rappelez-vous que is.na(x) nous indique où se trouvent les NA dans un vecteur. Donc, si nous sous-ensemblons x en fonction de cela, que pensez-vous qu'il se passe ?"
+
+- Class: cmd_question
+  Output: "Prouvez-le à vous-même en tapant x[is.na(x)]."
+  CorrectAnswer: x[is.na(x)]
+  AnswerTests: omnitest(correctExpr='x[is.na(x)]')
+  Hint: "Tapez x[is.na(x)] pour voir que vous obtenez tous les NA, ce qui n'est clairement pas ce que nous voulons !"
+
+- Class: cmd_question
+  Output: "Rappelez-vous que `!` nous donne la négation d'une expression logique, donc !is.na(x) peut être lu comme 'n'est pas NA'. Par conséquent, si nous voulons créer un vecteur appelé y qui contient toutes les valeurs non NA de x, nous pouvons utiliser y <- x[!is.na(x)]. Faites un essai."
+  CorrectAnswer: y <- x[!is.na(x)]
+  AnswerTests: omnitest(correctExpr='y <- x[!is.na(x)]')
+  Hint: "Tapez y <- x[!is.na(x)] pour capturer toutes les valeurs non manquantes de x."
+
+- Class: cmd_question
+  Output: "Imprimez y à la console."
+  CorrectAnswer: 'y'
+  AnswerTests: omnitest(correctExpr='y')
+  Hint: "Tapez y pour afficher son contenu."
+
+- Class: text
+  Output: "Maintenant que nous avons isolé les valeurs non manquantes de x et les avons placées dans y, nous pouvons sous-ensembler y comme bon nous semble."
+
+- Class: mult_question
+  Output: "Rappelez-vous que l'expression y > 0 nous donnera un vecteur de valeurs logiques de la même longueur que y, les VRAIS correspondant aux valeurs de y qui sont supérieures à zéro et les FALSEs correspondant aux valeurs de y qui sont inférieures ou égales à zéro. À votre avis, que donnera y[y > 0] ?"
+  AnswerChoices: Un vecteur de tous les éléments positifs de y; Un vecteur de tous les éléments négatifs de y; Un vecteur de tous les NAs; Un vecteur de longueur 0; Un vecteur de TRUEs et de FALSEs
+  CorrectAnswer: Un vecteur de tous les éléments positifs de y
+  AnswerTests: omnitest(correctVal="Un vecteur de tous les éléments positifs de y")
+  Hint: "L'expression logique y > 0 nous donnera VRAI pour chaque élément de y qui est positif. Sur cette base, que pensez-vous que y[y > 0] retournera ?"
+
+- Class: cmd_question
+  Output: "Tapez y[y > 0] pour voir que nous obtenons tous les éléments positifs de y, qui sont également les éléments positifs de notre vecteur original x."
+  CorrectAnswer: y[y > 0]
+  AnswerTests: omnitest(correctExpr='y[y > 0]')
+  Hint: "Tapez y[y > 0] pour afficher uniquement les éléments positifs de y."
+
+- Class: cmd_question
+  Output: "Vous vous demandez peut-être pourquoi nous n'avons pas simplement commencé par x[x > 0] pour isoler les éléments positifs de x. Essayez maintenant pour voir pourquoi."
+  CorrectAnswer: x[x > 0]
+  AnswerTests: omnitest(correctExpr='x[x > 0]')
+  Hint: "Essayez x[x > 0] pour voir pourquoi nous n'avons pas utilisé cette approche."
+
+- Class: text
+  Output: "Étant donné que NA n'est pas une valeur, mais plutôt un caractère de remplacement pour une quantité inconnue, l'expression NA > 0 s'évalue à NA. Par conséquent, nous obtenons un tas de NAs mélangés à nos nombres positifs lorsque nous faisons cela."
+
+- Class: cmd_question
+  Output: "En combinant notre connaissance des opérateurs logiques avec notre nouvelle connaissance des sous-ensembles, nous pourrions faire ceci : x[!is.na(x) & x > 0]. Essayez-le."
+  CorrectAnswer: x[!is.na(x) & x > 0]
+  AnswerTests: omnitest(correctExpr='x[!is.na(x) & x > 0]')
+  Hint: "Essayez x[!is.na(x) & x > 0] pour voir ce que vous obtenez."
+
+- Class: text
+  Output: "Dans ce cas, nous demandons uniquement les valeurs de x qui sont à la fois non manquantes ET supérieures à zéro."
+
+- Class: text
+  Output: "Je vous ai déjà montré comment sous-ensembler uniquement les dix premières valeurs de x en utilisant x[1:10]. Dans ce cas, nous fournissons un vecteur d'entiers positifs à l'intérieur des crochets, ce qui indique à R de retourner uniquement les éléments de x numérotés de 1 à 10."
+
+- Class: text
+  Output: "De nombreux langages de programmation utilisent ce que l'on appelle une \"indexation basée sur zéro\", ce qui signifie que le premier élément d'un vecteur est considéré comme l'élément 0. R utilise une \"indexation basée sur un\", ce qui (vous l'avez deviné !) signifie que le premier élément d'un vecteur est considéré comme l'élément 1."
+
+- Class: cmd_question
+  Output: "Pouvez-vous trouver comment nous sous-titrerions les 3e, 5e et 7e éléments de x ? Conseil : utilisez la fonction c() pour spécifier les numéros des éléments sous forme de tableau numérique."
+  CorrectAnswer: x[c(3, 5, 7)]
+  AnswerTests: omnitest(correctExpr='x[c(3, 5, 7)]')
+  Hint: "Créez un vecteur d'index avec c(3, 5, 7), puis placez-le à l'intérieur des crochets."
+
+- Class: cmd_question
+  Output: "Il est important, lorsque nous utilisons des vecteurs entiers pour sous-ensembler notre vecteur x, de nous en tenir à l'ensemble d'indices {1, 2, ..., 40} puisque x ne compte que 40 éléments. Que se passe-t-il si nous demandons l'élément zéro de x (c'est-à-dire x[0]) ? Faites un essai."
+  CorrectAnswer: x[0]
+  AnswerTests: omnitest(correctExpr='x[0]')
+  Hint: "Essayez x[0] pour voir ce qui se passe lorsque nous nous référons à l'élément zéro d'un vecteur, qui n'est pas défini dans R."
+
+- Class: cmd_question
+  Output: "Comme vous pouvez vous y attendre, nous n'obtenons rien d'utile. Malheureusement, R ne nous empêche pas de faire cela. Et si nous demandions le 3000e élément de x ? Faites-en l'essai."
+  CorrectAnswer: x[3000]
+  AnswerTests: omnitest(correctExpr='x[3000]')
+  Hint: "Demandez le 3000ème élément de x (qui n'existe pas) avec x[3000]."
+
+- Class: text
+  Output: "Encore une fois, rien d'utile, mais R ne nous empêche pas de le demander. Ceci devrait servir de mise en garde. Vous devez toujours vous assurer que ce que vous demandez est dans les limites du vecteur avec lequel vous travaillez."
+
+- Class: text
+  Output: "Et si nous sommes intéressés par tous les éléments de x SAUF le 2e et le 10e ? Il serait assez fastidieux de construire un vecteur contenant tous les nombres de 1 à 40 SAUF 2 et 10."
+
+- Class: cmd_question
+  Output: "Heureusement, R accepte les index entiers négatifs. Alors que x[c(2, 10)] nous donne UNIQUEMENT les 2ème et 10ème éléments de x, x[c(-2, -10)] nous donne tous les éléments de x SAUF les 2ème et 10ème éléments.  Essayez maintenant x[c(-2, -10)] pour le constater."
+  CorrectAnswer: x[c(-2, -10)]
+  AnswerTests: omnitest(correctExpr='x[c(-2, -10)]')
+  Hint: "Essayez x[c(-2, -10)]."
+
+- Class: cmd_question
+  Output: "Une façon abrégée de spécifier plusieurs nombres négatifs est de mettre le signe négatif devant le vecteur de nombres positifs. Tapez x[-c(2, 10)] pour obtenir exactement le même résultat."
+  CorrectAnswer: x[-c(2, 10)]
+  AnswerTests: omnitest(correctExpr='x[-c(2, 10)]')
+  Hint: "Utilisez x[-c(2, 10)] pour simplifier un peu les choses. Cela peut être un gain de temps si vous spécifiez de nombreux indices négatifs."
+
+- Class: text
+  Output: "Jusqu'à présent, nous avons couvert trois types de vecteurs d'index : logique, entier positif et entier négatif. Le seul type restant nous oblige à introduire le concept d'éléments \"nommés\"."
+
+- Class: cmd_question
+  Output: "Créez un tableau numérique avec trois éléments nommés en utilisant vect <- c(foo = 11, bar = 2, norf = NA)."
+  CorrectAnswer: vect <- c(foo = 11, bar = 2, norf = NA)
+  AnswerTests: omnitest(correctExpr='vect <- c(foo = 11, bar = 2, norf = NA)')
+  Hint: "Créez un vecteur nommé avec vect <- c(foo = 11, bar = 2, norf = NA)."
+
+- Class: cmd_question
+  Output: "Lorsque nous imprimons vect à la console, vous verrez que chaque élément a un nom. Essayez-le."
+  CorrectAnswer: vect
+  AnswerTests: omnitest(correctExpr='vect')
+  Hint: "Tapez vect pour afficher son contenu."
+
+- Class: cmd_question
+  Output: "Nous pouvons également obtenir les noms de vect en passant vect comme argument à la fonction names(). Faites-en l'essai."
+  CorrectAnswer: names(vect)
+  AnswerTests: omnitest(correctExpr='names(vect)')
+  Hint: "Vérifiez les résultats des names(vect)."
+
+- Class: cmd_question
+  Output: "Alternativement, nous pouvons créer un vecteur non nommé vect2 avec c(11, 2, NA). Faites-le maintenant."
+  CorrectAnswer: vect2 <- c(11, 2, NA)
+  AnswerTests: omnitest(correctExpr='vect2 <- c(11, 2, NA)')
+  Hint: "Créez un vecteur ordinaire (sans nom) appelé vect2 qui contient c(11, 2, NA)."
+
+- Class: cmd_question
+  Output: "Ensuite, nous pouvons ajouter l'attribut `names` à vect2 après coup avec names(vect2) <- c(\"foo\", \"bar\", \"norf\"). Allez-y."
+  CorrectAnswer: names(vect2) <- c("foo", "bar", "norf")
+  AnswerTests: omnitest(correctExpr='names(vect2) <- c("foo", "bar", "norf")')
+  Hint: "Ajouter des noms à vect2 avec names(vect2) <- c(\"foo\", \"bar\", \"norf\")."
+
+- Class: cmd_question
+  Output: "Maintenant, vérifions que vect et vect2 sont identiques en les passant comme arguments à la fonction identical()."
+  CorrectAnswer: identical(vect, vect2)
+  AnswerTests: any_of_exprs('identical(vect, vect2)', 'identical(vect2, vect)')
+  Hint: "La fonction identical() nous dit si ses deux premiers arguments sont, eh bien, identiques."
+
+- Class: text
+  Output: "En effet, vect et vect2 sont des vecteurs nommés identiques."
+
+- Class: mult_question
+  Output: "Revenons maintenant à la question du sous-ensemble d'un vecteur par des éléments nommés. Laquelle des commandes suivantes nous donnerait, selon vous, le deuxième élément de vect ?"
+  AnswerChoices: vect["bar"]; vect[bar]; vect["2"]
+  CorrectAnswer: vect["bar"]
+  AnswerTests: omnitest(correctVal='vect["bar"]')
+  Hint: "If we want the element named \"bar\" (i.e. the second element of vect), which command would get us that?"
+
+- Class: cmd_question
+  Output: "Maintenant, essayez-le."
+  CorrectAnswer: vect["bar"]
+  AnswerTests: omnitest(correctExpr='vect["bar"]')
+  Hint: "Essayez vect[\"bar\"]."
+
+- Class: cmd_question
+  Output: "De même, nous pouvons spécifier un vecteur de noms avec vect[c(\"foo\", \"bar\")]. Essayez-le."
+  CorrectAnswer: vect[c("foo", "bar")]
+  AnswerTests: omnitest(correctExpr='vect[c("foo", "bar")]')
+  Hint: "Utilisez vect[c(\"foo\", \"bar\")] pour obtenir uniquement les éléments de vect nommés \"foo\" et \"bar\"."
+
+- Class: text
+  Output: "Vous connaissez maintenant les quatre méthodes de sous-ensemble de données à partir de vecteurs. Différentes approches sont meilleures dans différents scénarios et en cas de doute, essayez !"
+
+- Class: mult_question
+  Output: "Souhaitez-vous informer quelqu'un de la réussite de cette leçon par e-mail ?"
+  CorrectAnswer: NULL
+  AnswerChoices: Oui; Non
+  AnswerTests: notify()
+  Hint: NULL
+  
