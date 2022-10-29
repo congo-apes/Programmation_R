@@ -183,9 +183,3 @@
   AnswerTests: omnitest(correctExpr='mon_div')
   Hint: Si votre environnement de programmation ne prend pas en charge l'autocomplétion, tapez simplement mon_div et appuyez sur Enter pour continuer.
 
-- Class: mult_question
-  Output: Souhaitez-vous informer quelqu'un de votre réussite à cette cette leçon par e-mail ?
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL

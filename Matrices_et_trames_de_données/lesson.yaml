@@ -176,11 +176,3 @@
 
 - Class: text
   Output: "Dans cette leçon, vous avez appris les bases du travail avec deux structures de données très importantes et courantes : les matrices et les trames de données. Il y a encore beaucoup à apprendre et nous aborderons des sujets plus avancés, notamment en ce qui concerne les trames de données, dans les prochaines leçons."
-
-- Class: mult_question
-  Output: "Souhaitez-vous informer quelqu'un par e-mail de la réussite de cette leçon ?"
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL
-  

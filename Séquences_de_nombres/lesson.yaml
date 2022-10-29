@@ -67,7 +67,7 @@
   Output: Pour confirmer que ma_seq a une longueur de 30, nous pouvons utiliser la fonction length(). Essayez-le maintenant.
   CorrectAnswer: length(ma_seq)
   AnswerTests: omnitest(correctExpr='length(ma_seq)')
-  Hint: Utilisez length( ma_seq) pour afficher la longueur de la variable ma_seq.
+  Hint: Utilisez length(ma_seq) pour afficher la longueur de la variable ma_seq.
 
 - Class: text
   Output: Imaginons que nous ne connaissions pas la longueur de ma_seq, mais que nous voulions générer une séquence d'entiers de 1 à N, où N représente la longueur du vecteur ma_seq. En d'autres termes, nous voulons un nouveau vecteur (1, 2, 3, ...) qui a la même longueur que ma_seq.
@@ -76,7 +76,7 @@
   Output: "Il y a plusieurs façons de procéder. L'une d'entre elles consiste à combiner l'opérateur `:` et la fonction length() comme ceci : 1:length(ma_seq). Faites un essai d'essayer."
   CorrectAnswer: 1:length(ma_seq)
   AnswerTests: omnitest(correctExpr='1:length(ma_seq)')
-  Hint: Essayez 1:length( ma_seq), sans affecter le résultat à une nouvelle variable.
+  Hint: Essayez 1:length(ma_seq), sans affecter le résultat à une nouvelle variable.
 
 - Class: cmd_question
   Output: Une autre option consiste à utiliser seq(along.with = ma_seq). Faites-en l'essai.
@@ -94,7 +94,7 @@
   Output: Il existe souvent plusieurs approches pour résoudre le même problème, en particulier dans R. Les approches simples qui impliquent moins de saisie sont généralement les meilleures. Il est également important que votre code soit lisible, afin que vous et les autres puissent comprendre ce qui se passe sans trop de difficultés.
 
 - Class: text
-  Output: Il existe souvent plusieurs approches pour résoudre le même problème, en particulier en R. Les approches simples qui impliquent moins de saisie sont généralement les meilleures. Il est également important que votre code soit lisible, afin que vous et les autres puissiez comprendre ce qui se passe sans trop de difficultés.
+  Output: Si R dispose d'une fonction intégrée pour une tâche particulière, il est probable que cette fonction soit hautement optimisée pour cet objectif et constitue votre meilleure option. À mesure que vous deviendrez un programmeur R plus avancé, vous concevrez vos propres fonctions pour effectuer des tâches lorsqu'il n'y a pas de meilleures options. Nous explorerons l'écriture de vos propres fonctions dans les prochaines leçons.
 
 - Class: text
   Output: Une autre fonction liée à la création de séquences de nombres est rep(), qui signifie "répliquer". Examinons quelques utilisations.
@@ -116,11 +116,3 @@
   CorrectAnswer: rep(c(0, 1, 2), each = 10)
   AnswerTests: omnitest(correctExpr='rep(c(0, 1, 2), each = 10)')
   Hint: Tapez rep(c(0, 1, 2), each = 10) pour voir comment l'argument `each` de la fonction rep() modifie légèrement son comportement.
-
-- Class: mult_question
-  Output: Souhaitez-vous informer quelqu'un de votre réussite à cette cette leçon par e-mail ?
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL
-  

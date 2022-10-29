@@ -58,7 +58,7 @@
   Hint: Tapez ?list.files pour voir la page d'aide.
 
 - Class: text
-  Output: L'une des parties les plus utiles de tout fichier d'aide R est la section Voir aussi (voir aussi). Lisez cette section pour les fichiers list.file. Certaines de ces fonctions peuvent être être utilisées dans des parties ultérieures de cette leçon.
+  Output: L'une des parties les plus utiles de tout fichier d'aide R est la section Voir aussi (voir aussi). Lisez cette section pour les fichiers list.file. Certaines de ces fonctions peuvent être utilisées dans des parties ultérieures de cette leçon.
 
 - Class: text
   Output: L'utilisation de la fonction args() sur un nom de fonction est aussi un moyen pratique de voir quels arguments une fonction peut prendre.  
@@ -78,7 +78,7 @@
   Hint: Tapez vieux.rep <- getwd() pour affecter la valeur du répertoire de travail de travail actuel à une variable appelée "vieux.rep".
 
 - Class: text
-  Output: Nous utiliserons vieux.dir à la fin de cette leçon pour retourner à l'endroit l'endroit où nous avons commencé. De nombreuses fonctions de requêtes comme getwd() ont la propriété utile qu'elles retournent la réponse à la question en tant que résultat de la la fonction.
+  Output: Nous utiliserons vieux.dir à la fin de cette leçon pour retourner à l'endroit où nous avons commencé. De nombreuses fonctions de requêtes comme getwd() ont la propriété utile qu'elles retournent la réponse à la question en tant que résultat de la fonction.
 
 - Class: cmd_question
   Output: Utilisez dir.create() pour créer un répertoire dans le répertoire de travail actuel appelé de travail actuel appelé "testrep".
@@ -135,7 +135,7 @@
   Hint: file.rename("montest.R", "montest2.R") est la réponse. Une recherche sur Google en utilisant les mots clés de la question, ainsi que la lettre R, vous donnera souvent un bon indice.
 
 - Class: text
-  Output: "Votre système d'exploitation fournira des outils plus simples pour ce genre de tâches. de tâches, mais il est utile de pouvoir manipuler les fichiers de manière programmatique. est utile. Vous pourriez maintenant essayer de supprimer mytest.R en utilisant file.remove('montest.R'), mais cela ne fonctionnera pas puisque montest.R n'existe plus. n'existe plus. Vous l'avez déjà renommé."
+  Output: "Votre système d'exploitation fournira des outils plus simples pour ce genre de tâches. de tâches, mais il est utile de pouvoir manipuler les fichiers de manière programmatique. Vous pourriez maintenant essayer de supprimer mytest.R en utilisant file.remove('montest.R'), mais cela ne fonctionnera pas puisque montest.R n'existe plus. n'existe plus. Vous l'avez déjà renommé."
 
 - Class: cmd_question
   Output: Faites une copie de "montest2.R" appelée "montest3.R" en utilisant file.copy().
@@ -171,7 +171,7 @@
   Hint: "dir.create(file.path('testrep2', 'testrep3'), recursive = TRUE) fera l'affaire. l'affaire. Si vous avez oublié l'argument récursif, la commande peut avoir la commande peut sembler fonctionner, mais elle ne crée pas le répertoire imbriqué."
 
 - Class: cmd_question
-  Output: Retournez à votre répertoire de travail original en utilisant setwd(). (Rappelez-vous que nous avons avons créé la variable old.dir avec le chemin complet du répertoire de travail original au début de ces questions.)
+  Output: Retournez à votre répertoire de travail original en utilisant setwd(). (Rappelez-vous que nous avons avons créé la variable vieux.rep avec le chemin complet du répertoire de travail original au début de ces questions.)
   CorrectAnswer: setwd(vieux.rep)
   AnswerTests: omnitest(correctExpr='setwd(vieux.rep)')
   Hint: Utilisez setwd(vieux.rep).
@@ -184,11 +184,3 @@
 
 - Class: text
   Output: "Dans cette leçon, vous avez appris à examiner votre espace de travail R et à travailler avec le système de fichiers de votre machine depuis R. Merci de jouer !"
-
-- Class: mult_question
-  Output: Souhaitez-vous informer quelqu'un de votre réussite à cette cette leçon par e-mail ?
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL
-  

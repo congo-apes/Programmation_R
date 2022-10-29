@@ -197,11 +197,4 @@
 
 - Class: text
   Output: "Vous connaissez maintenant les quatre méthodes de sous-ensemble de données à partir de vecteurs. Différentes approches sont meilleures dans différents scénarios et en cas de doute, essayez !"
-
-- Class: mult_question
-  Output: "Souhaitez-vous informer quelqu'un de la réussite de cette leçon par e-mail ?"
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL
   

@@ -19,7 +19,7 @@
   Output: "Les vecteurs logiques peuvent contenir les valeurs TRUE, FALSE, et NA (pour 'not available'). Ces valeurs sont générées à la suite de 'conditions' logiques. Expérimentons avec quelques conditions simples."
 
 - Class: cmd_question
-  Output: "Tout d'abord, créez un tableau numérique num_vect qui contient les valeurs 0, 5, 55, -10, et 6."
+  Output: "Tout d'abord, créez un tableau numérique num_vect qui contient les valeurs 0.5, 55, -10, et 6."
   CorrectAnswer: num_vect <- c(0.5, 55, -10, 6)
   AnswerTests: omnitest(correctExpr='num_vect <- c(0.5, 55, -10, 6)')
   Hint: "Rappelez-vous que la fonction c() est utilisée pour créer un vecteur. Si vous oubliez comment l'utiliser, utilisez ?c pour accéder au fichier d'aide. N'oubliez pas d'affecter le résultat à une nouvelle variable appelée num_vect."
@@ -47,7 +47,7 @@
   Output: "L'énoncé num_vect < 1 est une condition et tf nous dit si chaque élément correspondant élément de notre tableau numérique num_vect satisfait à cette condition."
 
 - Class: text
-  Output: "Le premier élément de num_vect est 0,5, ce qui est inférieur à 1 et donc l'affirmation 0,5 < 1 est TRUE. Le deuxième élément de num_vect est 55, ce qui est supérieur à 1, donc l'énoncé 55 < 1 est FALSE. La même logique s'applique pour les troisième et quatrième éléments."
+  Output: "Le premier élément de num_vect est 0.5, ce qui est inférieur à 1 et donc l'affirmation 0.5 < 1 est TRUE. Le deuxième élément de num_vect est 55, ce qui est supérieur à 1, donc l'énoncé 55 < 1 est FALSE. La même logique s'applique pour les troisième et quatrième éléments."
 
 - Class: cmd_question
   Output: "Essayons-en une autre. Tapez num_vect >= 6 sans affecter le résultat à une nouvelle variable."
@@ -99,9 +99,9 @@
 
 - Class: cmd_question
   Output: "Créez un vecteur de caractères qui contient les mots suivants : \"Mon\", \"nom\", \"est\". N'oubliez pas d'entourer chaque mot de sa propre série de guillemets doubles, afin que R sache qu'il s'agit de chaînes de caractères. Stockez le vecteur dans une variable appelée mon_car."
-  CorrectAnswer: mon_car <- c("My", "name", "is")
-  AnswerTests: omnitest(correctExpr='mon_car <- c("My", "name", "is")')
-  Hint: "Tapez mon_car <- c(\"My\", \"name\", \"is\") pour créer une nouvelle variable appelée my_char qui contient un vecteur de caractères de longueur 3. Assurez-vous que les virgules séparant les mots sont EXTERNES aux guillemets doubles, sinon R pense que les virgules font partie des mots."
+  CorrectAnswer: mon_car <- c("Mon", "nom", "est")
+  AnswerTests: omnitest(correctExpr='mon_car <- c("Mon", "nom", "est")')
+  Hint: "Tapez mon_car <- c(\"Mon\", \"nom\", \"est\") pour créer une nouvelle variable appelée my_char qui contient un vecteur de caractères de longueur 3. Assurez-vous que les virgules séparant les mots sont EXTERNES aux guillemets doubles, sinon R pense que les virgules font partie des mots."
 
 - Class: cmd_question
   Output: "Imprimez le contenu de mon_car pour voir à quoi il ressemble."
@@ -176,10 +176,3 @@
 - Class: text
   Output: "Nous aborderons la coercition dans une autre leçon, mais tout ce que cela signifie, c'est que les chiffres 1, 2, 3, et 4 dans la sortie ci-dessus ne sont plus des chiffres pour R, mais plutôt des caractères \"1\", \"2\", \"3\", et \"4\"."
 
-- Class: mult_question
-  Output: "Souhaitez-vous informer quelqu'un par e-mail de la réussite de cette leçon ?"
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL
-  

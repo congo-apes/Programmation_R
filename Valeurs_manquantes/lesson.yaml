@@ -101,11 +101,4 @@
   CorrectAnswer: Inf - Inf
   AnswerTests: omnitest(correctExpr='Inf - Inf')
   Hint: "Tapez Inf - Inf. Pouvez-vous deviner le résultat ?"
-
-- Class: mult_question
-  Output: "Souhaitez-vous informer quelqu'un de la réussite de cette leçon par e-mail ?"
-  CorrectAnswer: NULL
-  AnswerChoices: Oui; Non
-  AnswerTests: notify()
-  Hint: NULL
   
