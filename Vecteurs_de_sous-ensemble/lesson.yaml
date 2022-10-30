@@ -34,7 +34,7 @@
   Output: "Commençons par l'indexation avec des vecteurs logiques. Un scénario courant lorsque l'on travaille avec des données du monde réel est que nous voulons extraire tous les éléments d'un vecteur qui ne sont pas NA (c'est-à-dire des données manquantes). Rappelez-vous que is.na(x) donne un vecteur de valeurs logiques de la même longueur que x, les TRUEs correspondant aux valeurs NA de x et les FALSEs aux valeurs non-NA de x."
 
 - Class: mult_question
-  Output: "Que pensez-vous que x [is.na(x)] vous donnera ?"
+  Output: "Que pensez-vous que x[is.na(x)] vous donnera ?"
   AnswerChoices: Un vecteur de tous les NAs; Un vecteur sans NAs; Un vecteur de TRUEs et de FALSEs; Un vecteur de longueur 0
   CorrectAnswer: Un vecteur de tous les NAs
   AnswerTests: omnitest(correctVal="Un vecteur de tous les NAs")

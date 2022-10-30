@@ -37,7 +37,7 @@
   Hint: "Tapez length(mon_vecteur) pour afficher la longueur du vecteur que vous venez de créer."
 
 - Class: cmd_question
-  Output: "Ah ! C'est ce que nous voulions. Mais, que se passe-t-il si nous donnons à mon_vecteur un attribut `dim` ? Faisons un essai. Type dim(mon_vecteur) <- c(4, 5)."
+  Output: "Ah ! C'est ce que nous voulions. Mais, que se passe-t-il si nous donnons à mon_vecteur un attribut `dim` ? Faisons un essai. Tapez dim(mon_vecteur) <- c(4, 5)."
   CorrectAnswer: dim(mon_vecteur) <- c(4, 5)
   AnswerTests: omnitest(correctExpr='dim(mon_vecteur) <- c(4, 5)')
   Hint: "Tapez dim(mon_vecteur) <- c(4, 5) pour donner à mon_vecteur un attribut `dim`."

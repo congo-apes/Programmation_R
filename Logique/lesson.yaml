@@ -125,7 +125,7 @@
   Output: "Dans ce cas, l'opérande de gauche n'est évalué qu'avec le premier membre de l'opérande de droite (le vecteur). Les autres éléments du vecteur ne sont pas du tout évalués dans cette expression."
     
 - Class : text
-  Output: "L'opérateur OR suit un ensemble de règles similaires. La version `|` de OR évalue l'opérateur OR sur un vecteur entier, tandis que la version `||` de OU n'évalue que le premier membre d'un vecteur."
+  Output: "L'opérateur OU suit un ensemble de règles similaires. La version `|` de OU évalue l'opérateur OU sur un vecteur entier, tandis que la version `||` de OU n'évalue que le premier membre d'un vecteur."
     
 - Class : text
   Output: "Une expression utilisant l'opérateur OU sera évaluée comme TRUE si l'opérande de gauche ou l'opérande de droite est TRUE. Si les deux sont TRUE, l'expression sera évaluée à TRUE, mais si aucun des deux n'est TRUE, l'expression sera FALSE."
