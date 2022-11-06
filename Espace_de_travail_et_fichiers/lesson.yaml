@@ -72,13 +72,13 @@
 
 
 - Class: cmd_question
-  Output: Assignez la valeur du répertoire de travail actuel à une variable appelée "vieux.rep".
+  Output: Assignez la valeur du répertoire de travail actuel à une variable appelée vieux.rep.
   CorrectAnswer: vieux.rep <- getwd()
   AnswerTests: omnitest(correctExpr='vieux.rep <- getwd()')
-  Hint: Tapez vieux.rep <- getwd() pour affecter la valeur du répertoire de travail de travail actuel à une variable appelée "vieux.rep".
+  Hint: Tapez vieux.rep <- getwd() pour affecter la valeur du répertoire de travail de travail actuel à une variable appelée vieux.rep.
 
 - Class: text
-  Output: Nous utiliserons vieux.dir à la fin de cette leçon pour retourner à l'endroit où nous avons commencé. De nombreuses fonctions de requêtes comme getwd() ont la propriété utile qu'elles retournent la réponse à la question en tant que résultat de la fonction.
+  Output: Nous utiliserons vieux.rep à la fin de cette leçon pour retourner à l'endroit où nous avons commencé. De nombreuses fonctions de requêtes comme getwd() ont la propriété utile qu'elles retournent la réponse à la question en tant que résultat de la fonction.
 
 - Class: cmd_question
   Output: Utilisez dir.create() pour créer un répertoire dans le répertoire de travail actuel appelé de travail actuel appelé "testrep".
@@ -114,7 +114,7 @@
   Output: Vérifiez si "montest.R" existe dans le répertoire de travail en utilisant la fonction file.exists().
   CorrectAnswer: file.exists("montest.R")
   AnswerTests: omnitest(correctExpr='file.exists("montest.R")')
-  Hint: Utilisez file.exists(" montest.R ") pour vérifier qu'un fichier existe.
+  Hint: Utilisez file.exists("montest.R") pour vérifier qu'un fichier existe.
 
 - Class: text
   Output: Ce genre de fonctions est excessif pour une utilisation interactive. Mais, si vous exécutez un programme qui passe en boucle une série de fichiers et effectue un traitement sur chacun d'entre eux, vous voudrez vérifier que chacun existe avant d'essayer de le traiter.
@@ -126,7 +126,7 @@
   Hint: file.info("montest.R") fera l'affaire !
 
 - Class: text
-  Output: Vous pouvez utiliser l'opérateur $ --- par exemple, file.info(" montest.R ")$mode --- pour sélectionner des éléments spécifiques.
+  Output: Vous pouvez utiliser l'opérateur $ --- par exemple, file.info("montest.R")$mode --- pour sélectionner des éléments spécifiques.
 
 - Class: cmd_question
   Output: Changez le nom du fichier "montest.R" en "montest2.R" en utilisant la fonction file.rename().
