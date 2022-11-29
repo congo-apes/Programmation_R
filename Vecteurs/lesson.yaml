@@ -147,10 +147,10 @@
   Output: "Dans cet exemple, nous avons utilisé la fonction paste() pour réduire les éléments d'un seul vecteur de caractères. paste() peut également être utilisé pour joindre les éléments de plusieurs vecteurs de caractères."
 
 - Class: cmd_question
-  Output: "Dans le cas le plus simple, nous pouvons joindre deux vecteurs de caractères qui sont chacun de longueur 1 (c'est-à-dire joindre deux mots). Essayez paste(\"Bonjour\", \"monde !\", sep = \" \"), où l'argument `sep` indique à R que nous voulons séparer les éléments joints avec un seul espace."
-  CorrectAnswer: paste("Bonjour", "monde !", sep = " ")
-  AnswerTests: omnitest(correctExpr='paste("Bonjour", "monde !", sep = " ")')
-  Hint: "Entrez paste(\"Bonjour\", \"monde !\", sep = \" \") pour joindre les deux mots \"Bonjour\" et \"monde\", séparés par un espace unique. Il doit y avoir un espace simple entre les guillemets doubles dans l'argument `sep` de la fonction paste()."
+  Output: "Dans le cas le plus simple, nous pouvons joindre deux vecteurs de caractères qui sont chacun de longueur 1 (c'est-à-dire joindre deux mots). Essayez paste(\"Bonjour\", \"monde\", \"!\" sep = \" \"), où l'argument `sep` indique à R que nous voulons séparer les éléments joints avec un seul espace."
+  CorrectAnswer: paste("Bonjour", "monde", "!", sep = " ")
+  AnswerTests: omnitest(correctExpr='paste("Bonjour", "monde", "!" sep = " ")')
+  Hint: "Entrez paste(\"Bonjour\", \"monde\", \"!\", sep = \" \") pour joindre les deux mots \"Bonjour\" et \"monde\", séparés par un espace unique. Il doit y avoir un espace simple entre les guillemets doubles dans l'argument `sep` de la fonction paste()."
 
 - Class: cmd_question
   Output: "Pour un exemple légèrement plus compliqué, nous pouvons joindre deux vecteurs, chacun de longueur 3. Utilisez paste() pour joindre le vecteur d'entiers 1:3 au vecteur de caractères c(\"X\", \"Y\", \"Z\"). Cette fois, utilisez sep = \"\" pour ne laisser aucun espace entre les éléments joints."
