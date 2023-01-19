@@ -1,0 +1,232 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Fonctions
+  Author: Sean Kross, translated by GTAP/MDK
+  Type: Standard
+  Organization: swirlstats, translated by GTAP/MDK
+  Version: 2.2.14
+
+- Class: text
+  Output: "Les fonctions sont l'un des éléments fondamentaux du langage R. Elles sont de petits morceaux de code réutilisables. Ce sont de petits morceaux de code réutilisables qui peuvent être traités comme n'importe quel autre objet R."
+
+- Class: text
+  Output: "Si vous avez travaillé sur une autre partie de ce cours, vous avez probablement déjà utilisé certaines fonctions. Les fonctions sont généralement caractérisées par le nom de la fonction suivi de parenthèses."
+
+- Class: cmd_question
+  Output: "Essayons d'utiliser quelques fonctions de base, juste pour le plaisir. La fonction Sys.Date() renvoie une chaîne de caractères représentant la date du jour. Tapez Sys.Date() ci-dessous et voyez ce qui se passe."
+  CorrectAnswer: Sys.Date()
+  AnswerTests: omnitest(correctExpr='Sys.Date()')
+  Hint: "Afficher la date du jour en tapant \n\n Sys.Date()"
+
+- Class: text
+  Output: "La plupart des fonctions de R renvoient une valeur. Des fonctions comme Sys.Date() renvoient une valeur basée sur l'environnement de votre ordinateur, tandis que d'autres fonctions manipulent les données d'entrée afin de calculer une valeur de retour."
+
+- Class: cmd_question
+  Output: "La fonction mean() prend un vecteur de nombres en entrée et renvoie la moyenne de tous les nombres du vecteur d'entrée. Les entrées des fonctions sont souvent appelées arguments. Fournir des arguments à une fonction est aussi parfois appelé passer des arguments à cette fonction. Les arguments que vous souhaitez transmettre à une fonction sont placés à l'intérieur des parenthèses de la fonction. Essayez de passer l'argument c(2, 4, 5) à la fonction mean()."
+  CorrectAnswer: mean(c(2, 4, 5))
+  AnswerTests: omnitest(correctExpr='mean(c(2, 4, 5))')
+  Hint: "Calculez la moyenne de 2, 4 et 5 en tapant : \n\n mean(c(2, 4, 5))"
+
+- Class: text
+  Output: "Les fonctions prennent généralement des arguments qui sont des variables sur lesquelles la fonction opère. Par exemple, la fonction mean() prend un vecteur comme argument, comme dans le cas de mean(c(2,6,8)). La fonction mean() additionne ensuite tous les nombres du vecteur et divise cette somme par la longueur du vecteur."
+
+- Class: text
+  Output: "Dans la question suivante, il vous sera demandé de modifier un script qui apparaîtra dès que vous passerez à la suite de cette question. Lorsque vous aurez terminé de modifier le script, enregistrez vos modifications et tapez submit() pour que le script soit évalué. Il y aura quelques commentaires dans le script qui s'ouvre, alors assurez-vous de les lire !"
+
+- Class: script
+  Output: "La dernière expression R à être évaluée dans une fonction deviendra la valeur de retour de cette fonction. Nous voulons que cette fonction prenne un argument, x, et retourne x sans le modifier. Supprimez le signe dièse pour que x soit renvoyé sans aucune modification. Veillez à enregistrer votre script avant de taper submit()."
+  AnswerTests: test_func1()
+  Hint: "Veillez à supprimer le signe dièse pour que la dernière expression de la fonction soit simplement x."
+  Script: script1.R
+
+- Class: cmd_question
+  Output: "Maintenant que vous avez créé votre première fonction, testons-la ! Tapez : \n\n fonction_ennuyeuse('Ma première fonction !') \n\n Si votre fonction fonctionne, elle devrait retourner la chaîne : 'Ma première fonction !'"
+  CorrectAnswer: "fonction_ennuyeuse('Ma première fonction !')"
+  AnswerTests: omnitest(correctExpr="fonction_ennuyeuse('Ma première fonction !')")
+  Hint: "Testez fonction_ennuyeuse en tapant : \n\n fonction_ennuyeuse('Ma première fonction !')"
+
+- Class: text
+  Output: "Félicitations pour avoir écrit votre première fonction. En écrivant des fonctions, vous pouvez vous faire une idée précise de la façon dont R fonctionne. Comme John Chambers, le créateur de R, l'a dit un jour :\n\n Pour comprendre les calculs dans R, deux slogans sont utiles : 1. Tout ce qui existe est un objet. 2. Tout ce qui se passe est un appel de fonction."
+
+- Class: cmd_question
+  Output: "Si vous voulez voir le code source d'une fonction, tapez simplement le nom de la fonction sans arguments ni parenthèses. Essayons cela avec la fonction que vous venez de créer. Tapez fonction_ennuyeuse pour voir son code source."
+  CorrectAnswer: fonction_ennuyeuse
+  AnswerTests: omnitest(correctExpr='fonction_ennuyeuse')
+  Hint: "Pour voir le code source de la fonction_ennuyeuse, tapez simplement : \n\n fonction_ennuyeuse"
+
+- Class: text
+  Output: "Il est temps de créer une fonction plus utile ! Nous allons reproduire la fonctionnalité de la fonction mean() en créant une fonction appelée : ma_moyenne(). Rappelez-vous que pour calculer la moyenne de tous les nombres d'un vecteur, vous trouvez la somme de tous les nombres du vecteur, puis vous divisez cette somme par le nombre de nombres du vecteur." 
+
+- Class: script
+  Output: "Veillez à sauvegarder votre script avant de taper submit()."
+  AnswerTests: test_func2()
+  Hint: "Utilisez la fonction sum() pour trouver la somme de tous les nombres dans le vecteur. Utilisez la fonction length() pour trouver la taille du vecteur."
+  Script: script2.R
+  
+- Class: cmd_question
+  Output: "Testez maintenant votre fonction ma_moyenne() en trouvant la moyenne du vecteur c(4, 5, 10)."
+  CorrectAnswer: ma_moyenne(c(4, 5, 10))
+  AnswerTests: omnitest(correctExpr='ma_moyenne(c(4, 5, 10))')
+  Hint: "Exécutez la commande ma_moyenne(c(4, 5, 10)) pour tester votre nouvelle fonction." 
+
+- Class: text
+  Output: "Ensuite, essayons d'écrire une fonction avec des arguments par défaut. Vous pouvez définir des valeurs par défaut pour les arguments d'une fonction, ce qui peut être utile si vous pensez que la personne qui utilise votre fonction définira un certain argument à la même valeur la plupart du temps."
+
+- Class: script
+  Output: "Veillez à sauvegarder votre script avant de taper submit()."
+  AnswerTests: test_func3()
+  Hint: "N'oubliez pas de définir les valeurs par défaut appropriées !"
+  Script: script3.R
+
+- Class: cmd_question
+  Output: "Faisons quelques tests de la fonction solde. Lancez solde(5) et voyez ce qui se passe."
+  CorrectAnswer: solde(5)
+  AnswerTests: omnitest(correctExpr='solde(5)')
+  Hint: "Testons votre fonction solde en exécutant : \n\n solde(5)"
+
+- Class: text
+  Output: "Prenons un moment pour examiner ce qui vient de se passer. Vous avez fourni un argument à la fonction, et R a fait correspondre cet argument à 'nombre' puisque 'nombre' est le premier argument. La valeur par défaut du "diviseur" est 2, la fonction a donc utilisé la valeur par défaut que vous avez fournie."
+
+- Class: cmd_question
+  Output: "Maintenant, testons la fonction solde en fournissant deux arguments. Tapez : solde(11, 5) et voyons ce qui se passe."
+  CorrectAnswer: solde(11, 5)
+  AnswerTests: omnitest(correctExpr='solde(11, 5)')
+  Hint: "Testons votre fonction solde en exécutant : \n\n solde(11, 5)"
+
+- Class: text
+  Output: "Une fois encore, les arguments ont été assortis de manière appropriée."
+
+- Class: cmd_question
+  Output: "Vous pouvez également spécifier explicitement les arguments d'une fonction. Lorsque vous désignez explicitement les valeurs des arguments par leur nom, l'ordre des arguments devient sans importance. Vous pouvez l'essayer en tapant : \n\n solde(diviseur = 11, nombre = 5)"
+  CorrectAnswer: solde(diviseur = 11, nombre = 5)
+  AnswerTests: omnitest(correctExpr='solde(diviseur = 11, nombre = 5)')
+  Hint: "L'ordre n'a plus d'importance lorsque vous indiquez explicitement les valeurs des arguments ! Testez-le en tapant : \n\n solde(diviseur = 11, nombre = 5)"
+
+- Class: text
+  Output: "Comme vous pouvez le constater, il y a une différence significative entre solde(11, 5) et solde(diviseur = 11, nombre = 5) !"
+
+- Class: cmd_question
+  Output: "R peut également faire correspondre partiellement les arguments. Essayez de taper solde(4, div = 2) pour voir cette fonctionnalité en action."
+  CorrectAnswer: solde(4, div = 2)
+  AnswerTests: omnitest(correctExpr='solde(4, div = 2)')
+  Hint: "Testez la correspondance partielle en tapant : \n\n solde(4, div = 2)"
+
+- Class: text
+  Output: "Un mot d'avertissement : en général, vous voulez que votre code soit aussi facile à comprendre que possible. Changer l'ordre des arguments en spécifiant leurs noms ou en utilisant uniquement des noms d'arguments partiels peut être source de confusion, alors utilisez ces fonctionnalités avec prudence !"
+
+- Class: cmd_question
+  Output: "Avec toute cette discussion sur les arguments, vous vous demandez peut-être s'il existe un moyen de voir les arguments d'une fonction (en plus de consulter la documentation). Heureusement, vous pouvez utiliser la fonction args() ! Tapez args(solde) pour examiner les arguments de la fonction solde."
+  CorrectAnswer: args(solde)
+  AnswerTests: omnitest(correctExpr='args(solde)')
+  Hint: "Regardez les arguments de la fonction solde en tapant : \n\n args(solde)"
+
+- Class: text
+  Output: "Vous ne vous en rendez peut-être pas compte mais je viens de vous faire faire quelque chose d'assez intéressant ! args() est une fonction, solde() est une fonction, et pourtant solde était un argument pour args(). Oui, c'est vrai : vous pouvez passer des fonctions comme arguments ! C'est un concept très puissant. Écrivons un script pour voir comment cela fonctionne."
+
+- Class: script
+  Output: "Veillez à sauvegarder votre script avant de taper submit()."
+  AnswerTests: test_func4()
+  Hint: "Assurez-vous que lorsque vous passez une fonction comme argument, vous passez le nom de la fonction sans parenthèses !"
+  Script: script4.R
+
+- Class: cmd_question
+  Output: "Faisons un essai avec votre nouvelle fonction evaluer() ! Utilisez evaluer pour trouver l'écart-type du vecteur c(1.4, 3.6, 7.9, 8.8)."
+  CorrectAnswer: evaluate(sd, c(1.4, 3.6, 7.9, 8.8))
+  AnswerTests: omnitest(correctExpr='evaluate(sd, c(1.4, 3.6, 7.9, 8.8))')
+  Hint: "La fonction d'écart type s'appelle sd(). Assurez-vous que lorsque vous passez une fonction comme argument, vous passez le nom de la fonction sans parenthèses !"
+
+- Class: text
+  Output: "L'idée de passer des fonctions comme arguments à d'autres fonctions est un concept important et fondamental en programmation."
+
+- Class: text
+  Output: "Vous serez peut-être surpris d'apprendre que vous pouvez transmettre une fonction en tant qu'argument sans définir au préalable la fonction transmise. Les fonctions qui ne sont pas nommées sont appelées à juste titre fonctions anonymes."
+
+- Class: text
+  Output: "Utilisons la fonction evaluate pour explorer le fonctionnement des fonctions anonymes. Pour le premier argument de la fonction evaluate, nous allons écrire une petite fonction qui tient sur une ligne. Dans le second argument, nous transmettons des données à la petite fonction anonyme du premier argument."
+
+- Class: cmd_question
+  Output: "Tapez la commande suivante et nous verrons ensuite comment elle fonctionne : \n\n evaluer(function(x){x+1}, 6)"
+  CorrectAnswer: evaluer(function(x){x+1}, 6)
+  AnswerTests: test_eval1()
+  Hint: "Il suffit de taper la commande : \n\n evaluer(function(x){x+1}, 6)"
+
+- Class: text
+  Output: "Le premier argument est une petite fonction anonyme qui prend un argument `x` et retourne `x+1`. Nous avons passé le nombre 6 dans cette fonction pour que l'expression entière soit évaluée à 7."
+
+- Class: cmd_question
+  Output: "Essayez d'utiliser evaluer() avec une fonction anonyme pour retourner le premier élément du vecteur c(8, 4, 0). Votre fonction anonyme ne doit prendre qu'un seul argument qui doit être une variable `x`."
+  CorrectAnswer: evaluer(function(x){x[1]}, c(8, 4, 0))
+  AnswerTests: test_eval2()
+  Hint: "Vous aurez peut-être besoin de vous rappeler comment indexer les éléments d'un vecteur. Rappelez-vous que votre fonction anonyme ne doit avoir qu'un seul argument, et que cet argument doit être nommé `x`."
+
+- Class: cmd_question
+  Output: "Essayez maintenant d'utiliser evaluer() avec une fonction anonyme pour retourner le dernier élément du vecteur c(8, 4, 0). Votre fonction anonyme ne doit prendre qu'un seul argument qui doit être une variable `x`."
+  CorrectAnswer: evaluer(function(x){x[length(x)]}, c(8, 4, 0))
+  AnswerTests: test_eval3()
+  Hint: "Vous aurez peut-être besoin de vous rappeler comment indexer les éléments d'un vecteur. Rappelez-vous que votre fonction anonyme ne doit avoir qu'un seul argument, et que cet argument doit être nommé `x`. L'utilisation de la fonction length() dans votre fonction anonyme peut vous aider."
+
+- Class: cmd_question
+  Output: "Pour le reste du cours, nous allons utiliser fréquemment la fonction paste(). Tapez ?paste afin que nous puissions jeter un coup d'œil à la documentation de la fonction paste."
+  CorrectAnswer: ?paste
+  AnswerTests: omnitest(correctExpr='?paste')
+  Hint: "Il suffit de taper : \n\n ?paste"
+
+- Class: text
+  Output: "Comme vous pouvez le voir, le premier argument de paste() est `...`, ce qui est appelé une ellipse ou simplement point-point-point. L'ellipse permet de passer un nombre indéfini d'arguments dans une fonction. Dans le cas de paste(), n'importe quel nombre de chaînes de caractères peut être passé comme argument et paste() retournera toutes les chaînes de caractères combinées en une seule chaîne."
+
+- Class: cmd_question
+  Output: "Pour voir comment fonctionne la fonction paste(), tapez : \n\n paste(\"Programmer\", \"c'est\", \"amusant\", \"!\")"
+  CorrectAnswer: paste("Programmer", "c'est", "amusant", "!")
+  AnswerTests: omnitest(correctExpr='paste("Programmer", "c'est", "amusant", "!")')
+  Hint: "Tapez simplement : \n\n paste(\"Programmer\", \"c'est\", \"amusant\", \"!\")"
+
+- Class: text
+  Output: "Il est temps d'écrire notre propre version modifiée de paste()."
+
+- Class: script 
+  Output: "Veillez à sauvegarder votre script avant de taper submit()."
+  AnswerTests: test_func5()
+  Hint: "N'oubliez pas que les disputes peuvent survenir après ..."
+  Script: script5.R
+
+- Class: cmd_question
+  Output: "Maintenant, testons votre fonction télégramme. Utilisez votre nouvelle fonction télégramme en lui passant les arguments que vous souhaitez !"
+  CorrectAnswer: telegramme()
+  AnswerTests: expr_uses_func('telegramme')
+  Hint: "Utilisez la fonction télégramme avec les arguments que vous souhaitez utiliser."
+
+- Class: script
+  Output: "Veillez à sauvegarder votre script avant de taper submit()."
+  AnswerTests: test_func6()
+  Hint: "Votre fonction doit comporter trois sections : capturer l'ellipse dans un list(), déballer les arguments de l'ellipse et les affecter à des variables, puis passer ces variables à paste()."
+  Script: script6.R
+
+- Class: cmd_question
+  Output: "Il est temps d'utiliser votre fonction texte_a_trous. Assurez-vous de nommer les arguments lieu, adjectif et nom pour que votre fonction fonctionne."
+  CorrectAnswer: texte_a_trous(adjectif = "", lieu = "", nom = "")
+  AnswerTests: expr_uses_func('texte_a_trous')
+  Hint: "Utilisez la fonction texte_a_trous et veillez à nommer les arguments de lieu, d'adjectif et de nom."
+
+- Class: text
+  Output: "Nous arrivons à la fin de cette leçon, mais il y a encore une idée à connaître."
+
+- Class: text
+  Output: "Vous êtes familier avec l'addition, la soustraction, la multiplication et la division de nombres dans R. Pour ce faire, vous utilisez les symboles +, -, * et /. Ces symboles sont appelés opérateurs binaires car ils prennent deux entrées, une entrée de gauche et une entrée de droite."  
+
+- Class: text
+  Output: "Dans R, vous pouvez définir vos propres opérateurs binaires. Dans le prochain script, je vais vous montrer comment."
+
+- Class: script
+  Output: "Veillez à sauvegarder votre script avant de taper submit()."
+  AnswerTests: test_func7()
+  Hint: "Rappelez-vous : 'Bonjour' %p% 'étudiant !' est la façon dont vous utilisez l'opérateur binaire."
+  Script: script7.R
+
+- Class: cmd_question
+  Output: "Vous avez créé votre propre opérateur binaire ! Testons-le. Collez ensemble les chaînes : \"J'aime\", \"R\", \"!\" en utilisant votre nouvel opérateur binaire."
+  CorrectAnswer: "J'aime" %p% "R" %p% "!"
+  AnswerTests: omnitest(correctExpr="J'aime" %p% "R" %p% "!")
+  Hint: "Utilisez %p% entre chaque chaîne."
+
+- Class: text
+  Output: "Nous sommes arrivés à la fin de notre leçon ! Allez-y et écrivez de superbes fonctions !"
