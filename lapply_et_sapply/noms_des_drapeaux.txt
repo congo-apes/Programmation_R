@@ -1,0 +1,56 @@
+1. Titre: Base de données des drapeaux
+
+2. Informations sur la source
+   -- Créateurs: Recueillis principalement auprès de la "Collins Gem Guide to Flags":
+      Collins Publishers (1986).
+   -- Donateur: Richard S. Forsyth 
+				8 Grosvenor Avenue
+				Mapperley Park
+				Nottingham NG3 5DX
+				0602-621676
+   -- Date: 15/5/1990
+
+3. Utilisation passée:
+   -- Aucun connu autre que ce qui est montré dans Forsyth's PC/BEAGLE User's Guide.
+
+4. Informations pertinentes:
+   -- Ce fichier de données contient les détails de diverses nations et de leurs drapeaux. Dans ce fichier, les champs sont séparés par des espaces (et non par des virgules).  Avec ces données, vous pouvez essayer de prédire la religion d'un pays à partir de sa taille et des couleurs de son drapeau.
+   -- Dix attributs ont une valeur numérique. Les autres ont une valeur booléenne ou nominale.
+
+5. Nombre d'instances: 194
+
+6. Nombre d'attributs: 30 (global)
+
+7. Informations sur les attributs:
+   1. nom					Nom du pays concerné.
+   2. masse_continentale	1=Amérique_du_Nord, 2=Amérique_du_Sud, 3=Europe, 4=Afrique, 4=Asie, 6=Océanie
+   3. zone					Quadrant géographique, basé sur Greenwich et l'équateur. 1=nord-est, 2=sud-est, 3=sud-ouest, 4=nord-ouest
+   4. région				En milliers de km carrés.
+   5. population			En millions ronds.
+   6. langue				1=Anglais, 2=Espagnol, 3=Français, 4=Allemand, 5=Slavic, 6=Autres Indo-Européens, 7=Chinois, 8=Arabe, 9=Japonais/Turc/Finlandais/Magyar, 10=Autres
+   7. religion				0=Catholique, 1=Autre Chrétien, 2=Musulman, 3=Bouddhiste, 4=Hindu, 5=Ethnique, 6=Marxiste, 7=Autres
+   8. barres				Nombre de barres verticales dans le drapeau.
+   9. bandes				Nombre de bandes horizontales dans le drapeau.
+  10. couleurs				Nombre de couleurs différentes dans le drapeau.
+  11. rouge					0 si rouge absent, 1 si rouge présent dans le drapeau
+  12. vert					0 si vert absent, 1 si vert présent dans le drapeau
+  13. bleu					0 si bleu absent, 1 si bleu présent dans le drapeau
+  14. or					0 si or ou jaune absent, 1 si or ou jaune présent dans le drapeau
+  15. blanc					0 si blanc absent, 1 si blanc présent dans le drapeau
+  16. noir					0 si noir absent, 1 si noir présent dans le drapeau
+  17. orange				0 si orange ou brun absent, 1 si orange ou brun présent dans le drapeau
+  18. teinte_principale		Couleur prédominante du drapeau (pour départager les ex-aequo, on prend la teinte la plus haute, en cas d'échec la teinte la plus centrale, et en cas d'échec la teinte la plus à gauche).
+  19. cercles				Nombre de cercles dans le drapeau.
+  20. croix					Nombre de croix (verticales).
+  21. saltires				Nombre de croisements en diagonale.
+  22. quartiers				Nombre de sections coupées en quatre.
+  23. etoiles_solaires		Nombre de symboles de soleil ou d'étoile.
+  24. croissant				1 si un symbole de croissant de lune est présent, sinon 0
+  25. triangle				1 si des triangles sont présents, 0 sinon
+  26. symbole				1 si une image inanimée est présente (par exemple, un bateau), sinon 0
+  27. animer				1 si une image animée (par exemple, un aigle, un arbre, une main humaine) est présente, 0 sinon
+  28. texte					1 si des lettres ou des écrits figurent sur le drapeau (par exemple, une devise ou un slogan), 0 sinon
+  29. haut_gauche			Couleur dans le coin supérieur gauche (déplacement vers la droite pour décider des égalités).
+  30. bas_droite			Coloriez le coin inférieur gauche (en vous déplaçant vers la gauche pour décider des bris d'égalité).
+
+8. Valeurs manquantes: Aucun
