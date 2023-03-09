@@ -1,0 +1,121 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: vapply et tapply
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.11
+
+- Class: text
+  Output: "Dans la dernière leçon, vous avez découvert les deux membres les plus fondamentaux de la famille de fonctions *apply de R : lapply() et sapply(), qui prennent toutes deux une liste en entrée, puis combinent et renvoient le résultat. Toutes deux prennent une liste en entrée, appliquent une fonction à chaque élément de la liste, puis combinent et renvoient le résultat. lapply() renvoie toujours une liste, tandis que sapply() tente de simplifier le résultat."
+
+- Class: text
+  Output: "Dans cette leçon, vous apprendrez à utiliser vapply() et tapply(), chacune d'entre elles ayant une fonction très spécifique dans le cadre de la méthodologie Fractionner-Appliquer-Combiner. Par souci de cohérence, nous utiliserons le même ensemble de données que dans la leçon \"lapply et sapply\"."
+
+- Class: text
+  Output: "Le jeu de données Flags du UCI Machine Learning Repository contient des informations sur diverses nations et leurs drapeaux. De plus amples informations sont disponibles ici : http://archive.ics.uci.edu/ml/datasets/Flags"
+
+- Class: text
+  Output: "J'ai stocké les données dans une variable appelée drapeaux. Si cela fait un certain temps que vous n'avez pas suivi la leçon \"lapply et sapply\", vous pouvez vous familiariser à nouveau avec les données en utilisant des fonctions telles que dim(), head(), str() et summary() lorsque vous revenez à l'invite (>). Vous pouvez également taper viewinfo() à l'invite pour afficher de la documentation sur l'ensemble de données. C'est parti !"
+
+- Class: cmd_question
+  Output: "Comme vous l'avez vu dans la dernière leçon, la fonction unique() renvoie un vecteur des valeurs uniques contenues dans l'objet qui lui est transmis. Par conséquent, sapply(drapeaux, unique) renvoie une liste contenant un vecteur de valeurs uniques pour chaque colonne de l'ensemble de données drapeaux. Réessayez maintenant."
+  CorrectAnswer: sapply(drapeaux, unique)
+  AnswerTests: omnitest(correctExpr='sapply(drapeaux, unique)')
+  Hint: "Utilisez sapply(drapeaux, unique) pour obtenir une liste contenant un vecteur de valeurs uniques pour chaque colonne de l'ensemble de données drapeaux."
+
+- Class: text
+  Output: "Et si vous aviez oublié comment fonctionne unique() et pensiez à tort qu'elle renvoie le *nombre* de valeurs uniques contenues dans l'objet qui lui est passé ? Dans ce cas, vous auriez pu vous attendre à ce que sapply(drapeaux, unique) renvoie un tableau numérique, puisque chaque élément de la liste renvoyée contiendrait un seul nombre et que sapply() pourrait alors simplifier le résultat en un tableau."
+
+- Class: text
+  Output: "Lorsque vous travaillez de manière interactive (à l'invite), cela ne pose guère de problème, puisque vous voyez le résultat immédiatement et que vous reconnaissez rapidement votre erreur. Cependant, lorsque vous travaillez de manière non interactive (par exemple en écrivant vos propres fonctions), un malentendu peut passer inaperçu et entraîner des résultats incorrects par la suite. Par conséquent, vous pouvez souhaiter être plus prudent et c'est là que vapply() est utile."
+
+- Class: text
+  Output: "Alors que sapply() tente de \"deviner\" le format correct du résultat, vapply() vous permet de le spécifier explicitement. Si le résultat ne correspond pas au format que vous avez spécifié, vapply() lèvera une erreur, ce qui entraînera l'arrêt de l'opération. Cela permet d'éviter des problèmes importants dans votre code qui pourraient être causés par des valeurs de retour inattendues de sapply()."
+
+- Class: cmd_question
+  Output: "Essayez vapply(drapeaux, unique, numeric(1)), qui indique que vous vous attendez à ce que chaque élément du résultat soit un tableau numérique de longueur 1. Comme ce n'est PAS le cas, VOUS OBTIENDREZ UNE ERREUR. Une fois l'erreur obtenue, tapez ok() pour passer à la question suivante."
+  CorrectAnswer: ok()
+  AnswerTests: omnitest(correctExpr="ok()")
+  Hint: "Tapez vapply(drapeaux, unique, numeric(1)), puis tapez ok() pour passer à la question suivante."
+
+- Class: cmd_question
+  Output: "Rappelez-vous de la leçon précédente que sapply(drapeaux, class) renvoie un vecteur de caractères contenant la classe de chaque colonne de l'ensemble de données. Réessayez maintenant pour voir le résultat."
+  CorrectAnswer: sapply(drapeaux, class)
+  AnswerTests: omnitest(correctExpr="sapply(drapeaux, class)")
+  Hint: "Tapez sapply(drapeaux, class) pour obtenir un vecteur de caractères des classes de colonnes."
+
+- Class: cmd_question
+  Output: "Si nous souhaitons être explicites quant au format du résultat attendu, nous pouvons utiliser vapply(drapeaux, class, character(1)). L'argument "character(1)" indique à R que la fonction class doit renvoyer un vecteur de caractères de longueur 1 lorsqu'elle est appliquée à CHAQUE colonne de l'ensemble de données drapeaux. Essayez-le maintenant."
+  CorrectAnswer: vapply(drapeaux, class, character(1))
+  AnswerTests: omnitest(correctExpr="vapply(drapeaux, class, character(1))")
+  Hint: "Utilisez vapply(drapeaux, class, character(1)) pour renvoyer un vecteur de caractères des classes de colonnes."
+
+- Class: text
+  Output: "Notez que puisque notre attente était correcte (c'est-à-dire character(1)), le résultat de vapply() est identique à celui de sapply() -- un vecteur de caractères de classes de colonnes."
+
+- Class: text
+  Output: "Vous pouvez considérer que vapply() est plus "sûr" que sapply(), car il vous oblige à spécifier le format de sortie à l'avance, au lieu de permettre à R de "deviner" ce que vous vouliez. En outre, vapply() peut être plus rapide que sapply() pour les grands ensembles de données. Cependant, lorsque vous effectuez une analyse de données de manière interactive (à l'invite), sapply() vous permet d'économiser de la frappe et sera souvent suffisante."
+
+- Class: text
+  Output: "En tant qu'analyste de données, vous souhaiterez souvent diviser vos données en groupes en fonction de la valeur d'une variable, puis appliquer une fonction aux membres de chaque groupe. C'est exactement ce que fait la fonction suivante que nous allons étudier, tapply()."
+
+- Class: cmd_question
+  Output: "Utilisez ?tapply pour obtenir la documentation."
+  CorrectAnswer: ?tapply
+  AnswerTests: any_of_exprs('?tapply', 'help(tapply)')
+  Hint: "Consultez le fichier d'aide avec ?tapply."
+
+- Class: cmd_question
+  Output: "La variable \"masse_continentale\" de notre jeu de données prend des valeurs entières comprises entre 1 et 6, chacune d'entre elles représentant une partie différente du monde. Utilisez table(drapeaux$masse_continentale) pour voir combien de drapeaux/pays appartiennent à chaque groupe."
+  CorrectAnswer: table(drapeaux$masse_continentale)
+  AnswerTests: omnitest(correctExpr="table(drapeaux$masse_continentale)")
+  Hint: "Utilisez table(drapeaux$masse_continentale) pour voir combien de drapeaux/pays appartiennent à chaque groupe."
+
+- Class: cmd_question
+  Output: "La variable \"animer\" de notre ensemble de données prend la valeur 1 si le drapeau d'un pays contient une image animée (par exemple un aigle, un arbre, une main humaine) et 0 dans le cas contraire. Utilisez table(drapeaux$animer) pour voir combien de drapeaux contiennent une image animée."
+  CorrectAnswer: table(drapeaux$animer)
+  AnswerTests: omnitest(correctExpr="table(drapeaux$animer)")
+  Hint: "Utilisez table(drapeaux$animer) pour voir combien de drapeaux contiennent une image animée."
+
+- Class: text
+  Output: "Ceci nous indique que 39 drapeaux contiennent un objet animateur (animer = 1) et 155 n'en contiennent pas (animer = 0)."
+
+- Class: cmd_question
+  Output: "Si vous prenez la moyenne arithmétique d'un ensemble de 0 et de 1, vous obtenez la proportion de 1. Utilisez tapply(drapeaux$animer, drapeaux$masse_continentale, mean) pour appliquer la fonction mean à la variable \"animer\" séparément pour chacun des six groupes de masse_continentale, ce qui nous donne la proportion de drapeaux contenant une image d'animateur DANS chaque groupe de masse_continentale."
+  CorrectAnswer: tapply(drapeaux$animer, drapeaux$masse_continentale, mean)
+  AnswerTests: omnitest(correctExpr="tapply(drapeaux$animer, drapeaux$masse_continentale, mean)")
+  Hint: "tapply(drapeaux$animer, drapeaux$masse_continentale, mean) nous indiquera la proportion de drapeaux contenant une image d'animateur dans chaque groupe de masse_continentale."
+
+- Class: text
+  Output: "Le premier groupe masse_continentale (masse_continentale = 1) correspond à l'Amérique du Nord et contient la plus grande proportion de drapeaux avec une image d'animateur (0.4194)."
+
+- Class: cmd_question
+  Output: "De même, nous pouvons consulter un résumé des valeurs de la population (en millions ronds) pour les pays avec et sans la couleur rouge sur leur drapeau avec tapply(drapeaux$population, drapeaux$rouge, summary)."
+  CorrectAnswer: tapply(drapeaux$population, drapeaux$rouge, summary)
+  AnswerTests: omnitest(correctExpr="tapply(drapeaux$population, drapeaux$rouge, summary)")
+  Hint: "Vous pouvez voir un résumé des populations pour les pays avec et sans la couleur rouge sur leur drapeau avec tapply(drapeaux$population, drapeaux$rouge, summary)."
+
+- Class: mult_question  
+  Output: "Quelle est la population médiane (en millions) des pays dont le drapeau ne comporte pas la couleur rouge ?"
+  AnswerChoices: 9.0; 4.0; 27.6; 3.0; 22.1; 0.0
+  CorrectAnswer: 3.0
+  AnswerTests: omnitest(correctVal= '3.0')
+  Hint: "Utilisez votre résultat de la dernière question. Rappelez-vous que rouge = 0 signifie que la couleur rouge n'est PAS présente sur le drapeau d'un pays."
+
+- Class: cmd_question
+  Output: "Enfin, utilisez la même approche pour examiner un résumé des valeurs de la population pour chacune des six masses continentales."
+  CorrectAnswer: tapply(drapeaux$population, drapeaux$masse_continentale, summary)
+  AnswerTests: omnitest(correctExpr="tapply(drapeaux$population, drapeaux$masse_continentale, summary)")
+  Hint: "Vous pouvez voir un résumé des populations pour chacune des six masses continentales en appelant tapply() avec trois arguments : drapeaux$population, drapeaux$masse_continentale, et summary."
+
+- Class: mult_question  
+  Output: "Quelle est la population maximale (en millions) du quatrième groupe masse_continentale (Afrique) ?"
+  AnswerChoices: 56.00; 1010.0; 119.0; 5.00; 157.00
+  CorrectAnswer: 56.00
+  AnswerTests: omnitest(correctVal= '56.00')
+  Hint: "Utilisez votre résultat de la dernière question."
+
+- Class: text  
+  Output: "Dans cette leçon, vous avez appris à utiliser vapply() comme alternative plus sûre à sapply(), ce qui est particulièrement utile lorsque vous écrivez vos propres fonctions. Vous avez également appris à utiliser tapply() pour diviser vos données en groupes en fonction de la valeur d'une variable, puis à appliquer une fonction à chaque groupe. Ces fonctions vous seront utiles pour devenir un meilleur analyste de données."
+
