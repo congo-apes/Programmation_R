@@ -37,7 +37,7 @@
   Output: "Cela nous indique qu'il y a 194 lignes, ou observations, et 30 colonnes, ou variables. Chaque observation est un pays et chaque variable décrit une caractéristique de ce pays ou de son drapeau. Pour ouvrir une description plus complète de l'ensemble de données dans un fichier texte séparé, tapez afficher_les_informations() lorsque vous êtes de retour à l'invite (>)."
 
 - Class: cmd_question
-  Output: "Comme pour tout ensemble de données, nous aimerions savoir sous quel format les variables ont été stockées. En d'autres termes, quelle est la \"classe\" de chaque variable ? Que se passe-t-il si nous faisons class(drapeaux) ? Faites un essai."
+  Output: "Comme pour tout ensemble de données, nous aimerions savoir sous quel format les variables ont été stockées. En d'autres termes, quelle est la \"class\" (classe) de chaque variable ? Que se passe-t-il si nous faisons class(drapeaux) ? Faites un essai."
   CorrectAnswer: class(drapeaux)
   AnswerTests: omnitest(correctExpr='class(drapeaux)')
   Hint: "Tapez class(drapeaux) pour voir ce qui se passe."
@@ -136,7 +136,7 @@
   Output: "Il est peut-être plus instructif de trouver la proportion de drapeaux (sur 194) contenant chaque couleur. Puisque chaque colonne n'est qu'un ensemble de 1 et de 0, la moyenne arithmétique de chaque colonne nous donnera la proportion de 1. (Si vous ne comprenez pas pourquoi, pensez à une situation plus simple où vous avez trois 1 et deux 0 -- (1 + 1 + 1 + 0 + 0)/5 = 3/5 = 0.6.)"
 
 - Class: cmd_question
-  Output: "Utilisez sapply() pour appliquer la fonction mean() à chaque colonne de couleurs_des_drapeaux. Rappelez-vous que le deuxième argument de sapply() doit juste spécifier le nom de la fonction (i.e. moyenne) que vous voulez appliquer."
+  Output: "Utilisez sapply() pour appliquer la fonction mean() à chaque colonne de couleurs_des_drapeaux. Rappelez-vous que le deuxième argument de sapply() doit juste spécifier le nom de la fonction (i.e. mean / moyenne) que vous voulez appliquer."
   CorrectAnswer: sapply(couleurs_des_drapeaux, mean)
   AnswerTests: omnitest(correctExpr='sapply(couleurs_des_drapeaux, mean)')
   Hint: "sapply(couleurs_des_drapeaux, mean) fera l'affaire !"
