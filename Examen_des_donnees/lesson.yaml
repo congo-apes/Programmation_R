@@ -1,0 +1,122 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Examen des données
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.11
+
+- Class: text
+  Output: "Lorsque vous travaillez avec un nouvel ensemble de données, la première chose à faire est de l'examiner ! Quel est le format des données ? Quelles sont les dimensions ? Quels sont les noms des variables ? Comment les variables sont-elles stockées ? Y a-t-il des données manquantes ? Les données présentent-elles des lacunes ?"
+
+- Class: text
+  Output: "Cette leçon vous apprendra à répondre à ces questions et à d'autres encore en utilisant les fonctions intégrées de R. Nous utiliserons un ensemble de données construit à partir de la base de données PLANTS du ministère de l'agriculture des États-Unis (http://plants.usda.gov/adv_search.html)."
+
+- Class: cmd_question
+  Output: "J'ai stocké les données pour vous dans une variable appelée plantes. Tapez ls() pour lister les variables de votre espace de travail, parmi lesquelles devrait se trouver plantes."
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: "Utilisez ls() pour lister les variables de votre espace de travail."
+
+- Class: cmd_question
+  Output: "Commençons par vérifier la classe de la variable plantes avec class(plantes). Cela nous donnera un indice sur la structure globale des données."
+  CorrectAnswer: class(plantes)
+  AnswerTests: omnitest(correctExpr='class(plantes)')
+  Hint: "Utilisez class(plantes) pour vérifier la classe de la variable plantes."
+
+- Class: text
+  Output: "Il est très courant que les données soient stockées dans un cadre de données. C'est la classe par défaut pour les données lues dans R à l'aide de fonctions telles que read.csv() et read.table(), que vous découvrirez dans une autre leçon."
+
+- Class: cmd_question
+  Output: "Comme l'ensemble de données est stocké dans un cadre de données, nous savons qu'il est rectangulaire. En d'autres termes, il a deux dimensions (lignes et colonnes) et s'inscrit parfaitement dans un tableau ou une feuille de calcul. Utilisez dim(plantes) pour connaître le nombre exact de lignes et de colonnes."
+  CorrectAnswer: dim(plantes)
+  AnswerTests: omnitest(correctExpr='dim(plantes)')
+  Hint: "Utilisez dim(plantes) pour connaître les dimensions exactes de l'ensemble de données plantes."
+
+- Class: text
+  Output: "Le premier nombre que vous voyez (5166) est le nombre de lignes (observations) et le deuxième nombre (10) est le nombre de colonnes (variables)."
+
+- Class: cmd_question
+  Output: "Vous pouvez également utiliser nrow(plantes) pour ne voir que le nombre de lignes. Essayez-le."
+  CorrectAnswer: nrow(plantes)
+  AnswerTests: omnitest(correctExpr='nrow(plantes)')
+  Hint: "Utilisez nrow(plantes) pour ne voir que le nombre de lignes."
+
+- Class: cmd_question
+  Output: "... et ncol(plantes) pour ne voir que le nombre de colonnes."
+  CorrectAnswer: ncol(plantes)
+  AnswerTests: omnitest(correctExpr='ncol(plantes)')
+  Hint: "Utilisez ncol(plantes) pour ne voir que le nombre de colonnes."
+
+- Class: cmd_question
+  Output: "Si vous souhaitez connaître l'espace occupé en mémoire par l'ensemble de données, vous pouvez utiliser object.size(plantes)."
+  CorrectAnswer: object.size(plantes)
+  AnswerTests: omnitest(correctExpr='object.size(plantes)')
+  Hint: "object.size(plantes) vous indiquera la quantité de mémoire occupée par la base de données plantes."
+
+- Class: cmd_question
+  Output: "Maintenant que nous avons une idée de la forme et de la taille de l'ensemble de données, voyons ce qu'il contient. names(plantes) renvoie un vecteur de caractères de noms de colonnes (c'est-à-dire de variables). Essayez-le."
+  CorrectAnswer: names(plantes)
+  AnswerTests: omnitest(correctExpr='names(plantes)')
+  Hint: "names(plantes) renvoie un vecteur de caractères de noms de colonnes (c'est-à-dire de variables)."
+
+- Class: text
+  Output: "Nous avons appliqué des noms de variables assez descriptifs à cet ensemble de données, mais ce ne sera pas toujours le cas. L'étape suivante consiste logiquement à jeter un coup d'œil aux données réelles. Cependant, notre ensemble de données contient plus de 5 000 observations (lignes), il n'est donc pas pratique de les visualiser en une seule fois."
+  
+- Class: cmd_question
+  Output: "La fonction head() vous permet de visualiser le sommet de l'ensemble de données. Essayez-la avec un seul argument."
+  CorrectAnswer: head(plantes)
+  AnswerTests: omnitest(correctExpr='head(plantes)')
+  Hint: "head(plantes) vous montrera le sommet de l'ensemble de données."
+
+- Class: text
+  Output: "Prenez une minute pour examiner et comprendre le résultat ci-dessus. Chaque ligne est étiquetée avec le numéro de l'observation et chaque colonne avec le nom de la variable. Votre écran n'est probablement pas assez large pour afficher les 10 colonnes côte à côte, auquel cas R affiche autant de colonnes que possible sur chaque ligne avant de passer à la suivante."
+
+- Class: cmd_question
+  Output: "Par défaut, head() affiche les six premières lignes des données. Vous pouvez modifier ce comportement en passant comme deuxième argument le nombre de lignes que vous souhaitez afficher. Utilisez head() pour afficher les 10 premières lignes de plantes."
+  CorrectAnswer: head(plantes, 10)
+  AnswerTests: omnitest(correctExpr='head(plantes, 10)')
+  Hint: "head(plantes, 10) affiche les 10 premières lignes de l'ensemble de données."
+
+- Class: cmd_question
+  Output: "Il en va de même pour l'utilisation de tail() afin de visualiser la fin de l'ensemble de données. Utilisez tail() pour visualiser les 15 dernières lignes."
+  CorrectAnswer: tail(plantes, 15)
+  AnswerTests: omnitest(correctExpr='tail(plantes, 15)')
+  Hint: "tail(plantes, 15) affiche les 15 dernières lignes de l'ensemble de données."
+
+- Class: cmd_question
+  Output: "Après avoir prévisualisé le haut et le bas des données, vous avez probablement remarqué un grand nombre de NA, qui sont les espaces réservés de R pour les valeurs manquantes. Utilisez summary(plantes) pour avoir une meilleure idée de la façon dont chaque variable est distribuée et de la proportion de l'ensemble de données qui est manquante."
+  CorrectAnswer: summary(plantes)
+  AnswerTests: omnitest(correctExpr='summary(plantes)')
+  Hint: "Essayez summary(plantes) pour voir comment chaque variable est distribuée et combien de valeurs manquantes nous avons à traiter."
+
+- Class: text
+  Output: "summary() fournit des résultats différents pour chaque variable, en fonction de sa classe. Pour les données numériques telles que Precipitations_minimum, summary() affiche le minimum, le 1er quartile, la médiane, la moyenne, le 3e quartile et le maximum. Ces valeurs nous aident à comprendre comment les données sont distribuées."
+
+- Class: text
+  Output: "Pour les variables catégorielles (appelées variables \"facteurs\" dans R), summary() affiche le nombre de fois que chaque valeur (ou \"niveau\") apparaît dans les données. Par exemple, chaque valeur de Nom_scientifique n'apparaît qu'une seule fois, puisqu'elle est propre à une plante spécifique. En revanche, le résumé de Duree_de_l_accord (également une variable factorielle) nous indique que notre jeu de données contient 3031 plantes pérennes, 682 plantes annuelles, etc."
+
+- Class: cmd_question
+  Output: "Vous pouvez voir que R a tronqué le résumé pour Periode_de_croissance_active en incluant une catégorie fourre-tout appelée \"Autre\". Comme il s'agit d'une variable catégorielle/factorielle, nous pouvons voir combien de fois chaque valeur apparaît dans les données avec table(plantes$Periode_de_croissance_active)."
+  CorrectAnswer: table(plantes$Periode_de_croissance_active)
+  AnswerTests: omnitest(correctExpr='table(plantes$Periode_de_croissance_active)')
+  Hint: "table(plantes$Periode_de_croissance_active) affichera les effectifs pour chaque niveau de la variable factorielle."
+
+- Class: text
+  Output: "Chacune des fonctions que nous avons présentées jusqu'à présent a sa place pour vous aider à mieux comprendre la structure de vos données. Cependant, nous avons laissé les meilleures pour la fin..."
+
+- Class: cmd_question
+  Output: "La fonction la plus utile et la plus concise pour comprendre la *str*ucture de vos données est sans doute str(). Essayez-la maintenant."
+  CorrectAnswer: str(plantes)
+  AnswerTests: omnitest(correctExpr='str(plantes)')
+  Hint: "Utilisez str(plantes) pour examiner la structure de vos données."
+
+- Class: text
+  Output: "La beauté de str() est qu'elle combine de nombreuses caractéristiques des autres fonctions que vous avez déjà vues, le tout dans un format concis et lisible. Tout en haut de l'écran, elle nous indique que la classe de plantes est \"data.frame\" et qu'elle comporte 5166 observations et 10 variables. Elle nous donne ensuite le nom et la classe de chaque variable, ainsi qu'un aperçu de son contenu."
+
+- Class: text
+  Output: "str() est en fait une fonction très générale que vous pouvez utiliser sur la plupart des objets dans R. Chaque fois que vous voulez comprendre la structure de quelque chose (un ensemble de données, une fonction, etc.), str() est un bon point de départ."
+
+- Class: text
+  Output: "Dans cette leçon, vous avez appris à vous familiariser avec la structure et le contenu d'un nouvel ensemble de données à l'aide d'une série de fonctions simples et utiles. Prendre le temps de faire cela dès le départ peut vous faire gagner du temps et de la frustration plus tard dans votre analyse."
+
