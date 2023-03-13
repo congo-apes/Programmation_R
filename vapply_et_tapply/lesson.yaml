@@ -46,7 +46,7 @@
   Hint: "Tapez sapply(drapeaux, class) pour obtenir un vecteur de caractères des classes de colonnes."
 
 - Class: cmd_question
-  Output: "Si nous souhaitons être explicites quant au format du résultat attendu, nous pouvons utiliser vapply(drapeaux, class, character(1)). L'argument "character(1)" indique à R que la fonction class doit renvoyer un vecteur de caractères de longueur 1 lorsqu'elle est appliquée à CHAQUE colonne de l'ensemble de données drapeaux. Essayez-le maintenant."
+  Output: "Si nous souhaitons être explicites quant au format du résultat attendu, nous pouvons utiliser vapply(drapeaux, class, character(1)). L'argument \"character(1)\" indique à R que la fonction class doit renvoyer un vecteur de caractères de longueur 1 lorsqu'elle est appliquée à CHAQUE colonne de l'ensemble de données drapeaux. Essayez-le maintenant."
   CorrectAnswer: vapply(drapeaux, class, character(1))
   AnswerTests: omnitest(correctExpr="vapply(drapeaux, class, character(1))")
   Hint: "Utilisez vapply(drapeaux, class, character(1)) pour renvoyer un vecteur de caractères des classes de colonnes."
@@ -55,7 +55,7 @@
   Output: "Notez que puisque notre attente était correcte (c'est-à-dire character(1)), le résultat de vapply() est identique à celui de sapply() -- un vecteur de caractères de classes de colonnes."
 
 - Class: text
-  Output: "Vous pouvez considérer que vapply() est plus "sûr" que sapply(), car il vous oblige à spécifier le format de sortie à l'avance, au lieu de permettre à R de "deviner" ce que vous vouliez. En outre, vapply() peut être plus rapide que sapply() pour les grands ensembles de données. Cependant, lorsque vous effectuez une analyse de données de manière interactive (à l'invite), sapply() vous permet d'économiser de la frappe et sera souvent suffisante."
+  Output: "Vous pouvez considérer que vapply() est plus \"sûr\" que sapply(), car il vous oblige à spécifier le format de sortie à l'avance, au lieu de permettre à R de \"deviner\" ce que vous vouliez. En outre, vapply() peut être plus rapide que sapply() pour les grands ensembles de données. Cependant, lorsque vous effectuez une analyse de données de manière interactive (à l'invite), sapply() vous permet d'économiser de la frappe et sera souvent suffisante."
 
 - Class: text
   Output: "En tant qu'analyste de données, vous souhaiterez souvent diviser vos données en groupes en fonction de la valeur d'une variable, puis appliquer une fonction aux membres de chaque groupe. C'est exactement ce que fait la fonction suivante que nous allons étudier, tapply()."

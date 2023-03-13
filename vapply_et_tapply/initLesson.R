@@ -5,7 +5,7 @@
 }
 
 .lessonpath <- file.path(.get_course_path(), "Programmation_R",
-                        "lapply_and_sapply")
+                        "lapply_et_sapply")
 
 .datapath <- file.path(.lessonpath, "donnees_des_drapeaux.txt")
 
