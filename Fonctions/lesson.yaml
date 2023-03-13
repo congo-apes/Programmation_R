@@ -85,7 +85,7 @@
   Hint: "Testons votre fonction solde en exécutant : \n\n solde(5)"
 
 - Class: text
-  Output: "Prenons un moment pour examiner ce qui vient de se passer. Vous avez fourni un argument à la fonction, et R a fait correspondre cet argument à 'nombre' puisque 'nombre' est le premier argument. La valeur par défaut du "diviseur" est 2, la fonction a donc utilisé la valeur par défaut que vous avez fournie."
+  Output: "Prenons un moment pour examiner ce qui vient de se passer. Vous avez fourni un argument à la fonction, et R a fait correspondre cet argument à 'nombre' puisque 'nombre' est le premier argument. La valeur par défaut du \"diviseur\" est 2, la fonction a donc utilisé la valeur par défaut que vous avez fournie."
 
 - Class: cmd_question
   Output: "Maintenant, testons la fonction solde en fournissant deux arguments. Tapez : solde(11, 5) et voyons ce qui se passe."
@@ -131,8 +131,8 @@
 
 - Class: cmd_question
   Output: "Faisons un essai avec votre nouvelle fonction evaluer() ! Utilisez evaluer pour trouver l'écart-type du vecteur c(1.4, 3.6, 7.9, 8.8)."
-  CorrectAnswer: evaluate(sd, c(1.4, 3.6, 7.9, 8.8))
-  AnswerTests: omnitest(correctExpr='evaluate(sd, c(1.4, 3.6, 7.9, 8.8))')
+  CorrectAnswer: evaluer(sd, c(1.4, 3.6, 7.9, 8.8))
+  AnswerTests: omnitest(correctExpr='evaluer(sd, c(1.4, 3.6, 7.9, 8.8))')
   Hint: "La fonction d'écart type s'appelle sd(). Assurez-vous que lorsque vous passez une fonction comme argument, vous passez le nom de la fonction sans parenthèses !"
 
 - Class: text
@@ -177,7 +177,7 @@
 - Class: cmd_question
   Output: "Pour voir comment fonctionne la fonction paste(), tapez : \n\n paste(\"Programmer\", \"c'est\", \"amusant\", \"!\")"
   CorrectAnswer: paste("Programmer", "c'est", "amusant", "!")
-  AnswerTests: omnitest(correctExpr='paste("Programmer", "c'est", "amusant", "!")')
+  AnswerTests: omnitest(correctExpr='paste(\"Programmer\", \"c\'est\", \"amusant\", \"!\")')
   Hint: "Tapez simplement : \n\n paste(\"Programmer\", \"c'est\", \"amusant\", \"!\")"
 
 - Class: text
@@ -190,7 +190,7 @@
   Script: script5.R
 
 - Class: cmd_question
-  Output: "Maintenant, testons votre fonction télégramme. Utilisez votre nouvelle fonction télégramme en lui passant les arguments que vous souhaitez !"
+  Output: "Maintenant, testons votre fonction telegramme. Utilisez votre nouvelle fonction telegramme en lui passant les arguments que vous souhaitez !"
   CorrectAnswer: telegramme()
   AnswerTests: expr_uses_func('telegramme')
   Hint: "Utilisez la fonction télégramme avec les arguments que vous souhaitez utiliser."
@@ -223,9 +223,9 @@
   Script: script7.R
 
 - Class: cmd_question
-  Output: "Vous avez créé votre propre opérateur binaire ! Testons-le. Collez ensemble les chaînes : \"J'aime\", \"R\", \"!\" en utilisant votre nouvel opérateur binaire."
-  CorrectAnswer: "J'aime" %p% "R" %p% "!"
-  AnswerTests: omnitest(correctExpr="J'aime" %p% "R" %p% "!")
+  Output: "Vous avez créé votre propre opérateur binaire ! Testons-le. Collez ensemble les chaînes : \"R\", \"est\", \"super\", \"!\" en utilisant votre nouvel opérateur binaire."
+  CorrectAnswer: \"R\" %p% \"est\" %p% \"super\" %p% \"!\"
+  AnswerTests: omnitest(correctExpr='\"R\" %p% \"est\" %p% \"super\" %p% \"!\"')
   Hint: "Utilisez %p% entre chaque chaîne."
 
 - Class: text

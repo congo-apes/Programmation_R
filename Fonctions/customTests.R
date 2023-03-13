@@ -24,7 +24,7 @@ test_func3 <- function() {
   try({
     func <- get('solde', globalenv())
     t1 <- identical(func(9, 4), 9 %% 4)
-    t2 <- identical(func(divisor = 5, num = 2), 2 %% 5)
+    t2 <- identical(func(diviseur = 5, nombre = 2), 2 %% 5)
     t3 <- identical(func(5), 5 %% 2)
     ok <- all(t1, t2, t3)
   }, silent = TRUE)
@@ -67,7 +67,7 @@ test_func7 <- function() {
   try({
     func <- get('%p%', globalenv())
     t1 <- identical(func("Bon", "travail !"), "Bon travail !")
-    t2 <- identical(func("un", func("deux", "trois")), "one deux trois")
+    t2 <- identical(func("un", func("deux", "trois")), "un deux trois")
     ok <- all(t1, t2)
   }, silent = TRUE)
   exists('ok') && isTRUE(ok)
@@ -90,7 +90,7 @@ test_eval2 <- function(){
     e <- get("e", parent.frame())
     expr <- e$expr
     t1 <- identical(expr[[3]], quote(c(8, 4, 0)))
-    t2 <- identical(expr[[1]], quote(evaluate))
+    t2 <- identical(expr[[1]], quote(evaluer))
     expr[[3]] <- c(5, 6)
     t3 <- identical(eval(expr), 5)
     ok <- all(t1, t2, t3)
@@ -103,7 +103,7 @@ test_eval3 <- function(){
     e <- get("e", parent.frame())
     expr <- e$expr
     t1 <- identical(expr[[3]], quote(c(8, 4, 0)))
-    t2 <- identical(expr[[1]], quote(evaluate))
+    t2 <- identical(expr[[1]], quote(evaluer))
     expr[[3]] <- c(5, 6)
     t3 <- identical(eval(expr), 6)
     ok <- all(t1, t2, t3)

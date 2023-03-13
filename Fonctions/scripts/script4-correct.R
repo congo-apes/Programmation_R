@@ -33,5 +33,5 @@
 evaluer <- function(fonc, donnees){
   # Écrivez votre code ici !
   # N'oubliez pas : la dernière expression évaluée sera retournée !
-  fonc(donees)
+  fonc(donnees)
 }

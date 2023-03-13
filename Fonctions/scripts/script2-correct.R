@@ -17,7 +17,7 @@
 # Veillez à enregistrer ce script et à taper submit() dans la console après avoir 
 # effectué vos modifications.
 
-my_mean <- function(mon_vecteur) {
+ma_moyenne <- function(mon_vecteur) {
   # Écrivez votre code ici !
   # N'oubliez pas : la dernière expression évaluée sera retournée !
   sum(mon_vecteur)/length(mon_vecteur)
