@@ -1,0 +1,173 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Simulation
+  Author: Nick Carchedi, translated by GTAP/MDK
+  Type: Standard
+  Organization: JHU Biostat, translated by GTAP/MDK
+  Version: 2.2.11
+
+- Class: text
+  Output: "L'un des grands avantages de l'utilisation d'un langage de programmation statistique tel que R est sa vaste collection d'outils de simulation de nombres aléatoires."
+
+- Class: text
+  Output: "Cette leçon suppose une certaine familiarité avec quelques distributions de probabilités courantes, mais ces sujets ne seront abordés que dans le cadre de la génération de nombres aléatoires. Même si vous n'avez aucune expérience préalable de ces concepts, vous devriez être en mesure de suivre la leçon et d'en comprendre les idées principales."
+
+- Class: cmd_question
+  Output: "La première fonction que nous utiliserons pour générer des nombres aléatoires est sample(). Utilisez ?sample pour consulter la documentation."
+  CorrectAnswer: ?sample
+  AnswerTests: omnitest(correctExpr='?sample')
+  Hint: "Utilisez '?sample' pour obtenir la documentation de la fonction sample()."
+
+- Class: cmd_question
+  Output: "Simulons le lancement de quatre dés à six faces : \n\n sample(1:6, 4, replace = TRUE)"
+  CorrectAnswer: sample(1:6, 4, replace = TRUE)
+  AnswerTests: match_call('sample(1:6, 4, replace = TRUE)')
+  Hint: "Tapez sample(1:6, 4, replace = TRUE) pour simuler le lancement de quatre dés à six faces."
+
+- Class: cmd_question
+  Output: "Répétez maintenant la commande pour voir si votre résultat est différent. (La probabilité d'obtenir exactement le même résultat est de (1/6)^4 = 0.00077, ce qui est assez faible)."
+  CorrectAnswer: sample(1:6, 4, replace = TRUE)
+  AnswerTests: match_call('sample(1:6, 4, replace = TRUE)')
+  Hint: "Tapez sample(1:6, 4, replace = TRUE) pour simuler un nouveau lancer de quatre dés à six faces."
+
+- Class: text
+  Output: "sample(1:6, 4, replace = TRUE) demande à R de sélectionner au hasard quatre nombres entre 1 et 6, AVEC remplacement. L'échantillonnage avec remplacement signifie simplement que chaque nombre est \"replace\" après avoir été sélectionné, de sorte que le même nombre peut apparaître plus d'une fois. C'est ce que nous voulons ici, puisque le résultat d'un dé ne doit pas affecter le résultat des autres."
+
+- Class: cmd_question
+  Output: "Maintenant, échantillonnez 10 nombres entre 1 et 20, SANS remplacement. Pour échantillonner sans remplacement, il suffit de ne pas utiliser l'argument \"replace\"."
+  CorrectAnswer: sample(1:20, 10)
+  AnswerTests: match_call('sample(1:20, 10)')
+  Hint: "Tapez sample(1:20, 10) pour échantillonner 10 nombres entre 1 et 20, sans remplacement."
+
+- Class: text
+  Output: "La dernière commande ayant été échantillonnée sans remplacement, aucun nombre n'apparaît plus d'une fois dans le résultat."
+
+- Class: cmd_question
+  Output: "LETTERS est une variable prédéfinie dans R qui contient un vecteur des 26 lettres de l'alphabet anglais. Jetez-y un coup d'œil maintenant."
+  CorrectAnswer: LETTERS
+  AnswerTests: omnitest(correctExpr='LETTERS')
+  Hint: "Tapez LETTERS pour imprimer son contenu sur la console."
+
+- Class: cmd_question
+  Output: "La fonction sample() peut également être utilisée pour permuter, ou réarranger, les éléments d'un vecteur. Par exemple, essayez sample(LETTERS) pour permuter les 26 lettres de l'alphabet anglais."
+  CorrectAnswer: sample(LETTERS)
+  AnswerTests: omnitest(correctExpr='sample(LETTERS)')
+  Hint: "Utilisez sample(LETTERS) pour permuter les 26 lettres de l'alphabet anglais."
+
+- Class: text
+  Output: "Cela revient à prélever un échantillon de taille 26 dans LETTERS, sans remplacement. Lorsque l'argument \"size\" de sample() n'est pas spécifié, R prend un échantillon de taille égale au vecteur à partir duquel vous échantillonnez."
+
+- Class: text
+  Output: "Supposons maintenant que nous voulions simuler 100 tirages d'une pièce de monnaie injuste à deux faces. Cette pièce a une probabilité de 0.3 de tomber sur \"pile\" et une probabilité de 0.7 de tomber sur \"face\"."
+
+- Class: cmd_question
+  Output: "La valeur 0 représente pile et la valeur 1 représente face. Utilisez sample() pour tirer un échantillon de taille 100 du vecteur c(0,1), avec remplacement. Comme la pièce n'est pas équitable, nous devons attacher des probabilités spécifiques aux valeurs 0 (pile) et 1 (face) avec un quatrième argument, prob = c(0,3, 0,7). Affectez le résultat à une nouvelle variable appelée flips."
+  CorrectAnswer: tirages <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))
+  AnswerTests: match_call('tirages <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))')
+  Hint: "La commande suivante permet de produire 100 tirages d'une pièce inéquitable et d'assigner le résultat : \n\n tirages <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))"
+
+- Class: cmd_question
+  Output: "Voir le contenu de la variable tirages."
+  CorrectAnswer: tirages
+  AnswerTests: omnitest(correctExpr='tirages')
+  Hint: "Il suffit de taper tirages pour en voir le contenu."
+
+- Class: cmd_question
+  Output: "Étant donné que nous avons fixé à 0.7 la probabilité de tomber sur face lors d'un lancer de pièce donné, nous nous attendons à ce qu'environ 70 de nos lancers de pièce aient la valeur 1. Comptez le nombre réel de 1 contenus dans les tirages à l'aide de la fonction sum()."
+  CorrectAnswer: sum(tirages)
+  AnswerTests: omnitest(correctExpr='sum(tirages)')
+  Hint: "sum(tirages) additionne tous les 1 et les 0, ce qui donne le nombre total de 1 dans les tirages."
+
+- Class: cmd_question
+  Output: "Un pile ou face est un résultat binaire (0 ou 1) et nous effectuons 100 essais indépendants (pile ou face). Nous pouvons donc utiliser rbinom() pour simuler une variable aléatoire binomiale. Consultez la documentation de rbinom() en utilisant ?rbinom."
+  CorrectAnswer: ?rbinom
+  AnswerTests: omnitest(correctExpr='?rbinom')
+  Hint: "Tapez ?rbinom pour obtenir le fichier d'aide de rbinom()."
+
+- Class: text
+  Output: "Chaque distribution de probabilités dans R possède une fonction r*** (pour \"random\"), une fonction d*** (pour \"density\"), une fonction p*** (pour \"probability\") et q*** (pour \"quantile\"). Dans cette leçon, ce sont les fonctions r*** qui nous intéressent le plus, mais je vous encourage à explorer les autres fonctions par vous-même."
+
+- Class: cmd_question
+  Output: "Une variable aléatoire binomiale représente le nombre de \"succès\" (face) dans un nombre donné d'\"essais\" indépendants (pile ou face). Par conséquent, nous pouvons générer une seule variable aléatoire qui représente le nombre de têtes sur 100 lancers de notre pièce de monnaie injuste en utilisant rbinom(1, size = 100, prob = 0.7). Notez que vous ne spécifiez que la probabilité de \"succès\" (face) et NON la probabilité d'\"échec\" (pile). Essayez-le maintenant."
+  CorrectAnswer: rbinom(1, size = 100, prob = 0.7)
+  AnswerTests: match_call('rbinom(1, size = 100, prob = 0.7)')
+  Hint: "Appeler rbinom() avec n = 1, size = 100, et prob = 0.7."
+
+- Class: cmd_question
+  Output: "De manière équivalente, si nous voulons voir tous les 0 et les 1, nous pouvons demander 100 observations, chacune de taille 1, avec une probabilité de succès de 0.7. Faites un essai, en affectant le résultat à une nouvelle variable appelée tirages2."
+  CorrectAnswer: tirages2 <- rbinom(100, size = 1, prob = 0.7)
+  AnswerTests: match_call('tirages2 <- rbinom(100, size = 1, prob = 0.7)')
+  Hint: "Appeler rbinom() avec n = 100, size = 1, et prob = 0.7 et assigner le résultat à tirages2."
+
+- Class: cmd_question
+  Output: "Voir le contenu de tirages2."
+  CorrectAnswer: tirages2
+  AnswerTests: omnitest('tirages2')
+  Hint: "Tapez tirages2 pour voir son contenu."
+
+- Class: cmd_question
+  Output: "Utilisez maintenant sum() pour compter le nombre de 1 (têtes) dans tirages2. Ce nombre devrait être proche de 70 !"
+  CorrectAnswer: sum(tirages2)
+  AnswerTests: omnitest('sum(tirages2)')
+  Hint: "Utilisez sum(tirages2) pour compter le nombre de 1."
+
+- Class: cmd_question
+  Output: "Comme pour rbinom(), nous pouvons utiliser R pour simuler des nombres aléatoires à partir de nombreuses autres distributions de probabilités. Consultez la documentation de rnorm()."
+  CorrectAnswer: ?rnorm
+  AnswerTests: omnitest('?rnorm')
+  Hint: "Tapez ?rnorm pour afficher son fichier d'aide."
+
+- Class: cmd_question
+  Output: "La distribution normale standard a une moyenne de 0 et un écart-type de 1. Comme vous pouvez le voir dans la section \"Usage\" de la documentation, les valeurs par défaut des arguments \"mean\" et \"sd\" de rnorm() sont respectivement 0 et 1. Ainsi, rnorm(10) générera 10 nombres aléatoires à partir d'une distribution normale standard. Essayez-le."
+  CorrectAnswer: rnorm(10)
+  AnswerTests: omnitest('rnorm(10)')
+  Hint: "Utilisez rnorm(10) pour générer 10 nombres aléatoires à partir d'une distribution normale standard."
+
+- Class: cmd_question
+  Output: "Faites de même, mais avec une moyenne de 100 et un écart-type de 25."
+  CorrectAnswer: rnorm(10, 100, 25)
+  AnswerTests: match_call('rnorm(10, 100, 25)')
+  Hint: "Utilisez rnorm(10, mean = 100, sd = 25) pour générer 10 nombres aléatoires à partir d'une distribution normale avec une moyenne de 100 et un écart type de 25."
+
+- Class: text
+  Output: "Enfin, que faire si nous voulons simuler 100 *groupes* de nombres aléatoires, chacun contenant 5 valeurs générées à partir d'une distribution de Poisson de moyenne 10 ? Commençons par un groupe de 5 nombres, puis je vous montrerai comment répéter l'opération 100 fois de manière pratique et compacte."
+
+- Class: cmd_question
+  Output: "Génère 5 valeurs aléatoires à partir d'une distribution de Poisson de moyenne 10. Consultez la documentation de rpois() si vous avez besoin d'aide."
+  CorrectAnswer: rpois(5, 10)
+  AnswerTests: match_call('rpois(5, 10)')
+  Hint: "Utilisez rpois(5, 10) pour générer 5 nombres aléatoires à partir d'une distribution de Poisson de moyenne 10."
+
+- Class: cmd_question
+  Output: "Utilisez maintenant replicate(100, rpois(5, 10)) pour effectuer cette opération 100 fois. Stockez le résultat dans une nouvelle variable appelée mon_pois."
+  CorrectAnswer: mon_pois <- replicate(100, rpois(5, 10))
+  AnswerTests: match_call('mon_pois <- replicate(100, rpois(5, 10))')
+  Hint: "mon_pois <- replicate(100, rpois(5, 10)) répétera l'opération 100 fois et stockera le résultat."
+
+- Class: cmd_question
+  Output: "Jetez un coup d'œil au contenu de mon_pois."
+  CorrectAnswer: mon_pois
+  AnswerTests: omnitest('mon_pois')
+  Hint: "Imprime le contenu de mon_pois sur la console."
+
+- Class: cmd_question
+  Output: "replicate() a créé une matrice dont chaque colonne contient 5 nombres aléatoires générés à partir d'une distribution de Poisson de moyenne 10. Nous pouvons maintenant trouver la moyenne de chaque colonne de mon_pois à l'aide de la fonction colMeans(). Stockez le résultat dans une variable appelée cm."
+  CorrectAnswer: cm <- colMeans(mon_pois)
+  AnswerTests: omnitest('cm <- colMeans(mon_pois)')
+  Hint: "Utilisez cm <- colMeans(mon_pois) pour créer un vecteur de moyennes de colonnes, en stockant le résultat dans cm."
+
+- Class: cmd_question
+  Output: "Jetons un coup d'œil à la distribution des moyennes de nos colonnes en traçant un histogramme avec hist(cm)."
+  CorrectAnswer: hist(cm)
+  AnswerTests: omnitest('hist(cm)')
+  Hint: "hist(cm) vous donnera un histogramme des moyennes des colonnes."
+
+- Class: text
+  Output: "On dirait que les moyennes de nos colonnes sont presque normalement distribuées, n'est-ce pas ? C'est le Théorème de la Limite Centrale qui est à l'œuvre, mais c'est une leçon pour un autre jour !"
+
+- Class: text
+  Output: "Toutes les distributions de probabilité standard sont intégrées à R, y compris la distribution exponentielle (rexp()), le chi-carré (rchisq()), la distribution gamma (rgamma()), ..... Vous voyez le schéma."
+
+- Class: text
+  Output: "La simulation est pratiquement un domaine à part entière et nous n'avons fait qu'effleurer la surface de ce qui est possible. Je vous encourage à explorer ces fonctions et d'autres par vous-même."
+
