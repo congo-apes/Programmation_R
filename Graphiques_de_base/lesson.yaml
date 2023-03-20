@@ -1,0 +1,203 @@
+- Class: meta
+  Course: Programmation R
+  Lesson: Graphiques de base
+  Author: David Kane, translated by GTAP/MDK
+  Type: Standard
+  Organization: Williams College, translated by GTAP/MDK
+  Version: 0.1.1
+
+- Class: text
+  Output: "L'une des plus grandes forces de R, par rapport à d'autres langages de programmation, est la facilité avec laquelle nous pouvons créer des graphiques de qualité. Dans cette leçon, vous découvrirez les graphiques de base dans R." 
+
+- Class: text
+  Output: "Nous ne couvrons pas dans cette leçon les parties les plus avancées des graphiques en R. Il s'agit notamment de lattice, ggplot2 et ggvis. Il s'agit notamment de lattice, ggplot2 et ggvis."
+
+- Class: text
+  Output: "Certains pensent que cette approche est rétrograde et que nous devrions d'abord enseigner ggplot2. Voir http://varianceexplained.org/r/teach_ggplot2_to_beginners/ pour un aperçu de ce point de vue."
+
+- Class: cmd_question
+  Output: "Charger la base de données incluse cars avec data(cars)."
+  CorrectAnswer: data(cars)
+  AnswerTests: omnitest(correctExpr='data(cars)')
+  Hint: "Tapez data(cars) pour charger les données."
+
+- Class: text
+  Output: "Pour fixer les idées, nous travaillerons avec des cadres de données simples. Notre objectif principal est de présenter les différentes fonctions de traçage et leurs arguments. Tous les résultats seraient plus intéressants avec des ensembles de données plus importants et plus complexes."
+
+- Class: cmd_question
+  Output: "Affichez la page d'aide pour les cars."
+  CorrectAnswer: ?cars
+  AnswerTests: any_of_exprs('?cars', 'help(cars)', 'help("plot")')
+  Hint: "Tapez ?cars ou help(cars) pour afficher une page d'aide contenant des détails sur le cadre de données des voitures."
+
+- Class: text
+  Output: "Comme vous pouvez le voir dans la page d'aide, l'ensemble de données sur les voitures ne comporte que deux variables : la vitesse (\"speed\") et la distance d'arrêt (\"dist\"). Notez que les données datent des années 1920."
+
+- Class: cmd_question
+  Output: "Exécutez head() sur les données des voitures."
+  CorrectAnswer: head(cars)
+  AnswerTests: omnitest(correctExpr='head(cars)')
+  Hint: "Tapez head(cars) pour voir le haut de la base de données cars."
+
+- Class: text
+  Output: "Avant de tracer un graphique, il est toujours bon de se faire une idée des données. Pour ce faire, les principales commandes R sont dim(), names(), head(), tail() et summary()."
+
+- Class: cmd_question
+  Output: "Exécutez la commande plot() sur la base de données des voitures." 
+  CorrectAnswer: plot(cars)
+  AnswerTests: omnitest(correctExpr='plot(cars)')
+  Hint: "Tapez plot(cars) pour créer un graphique de la base de données cars."
+
+- Class: text
+  Output: "Comme toujours, R s'efforce de vous donner quelque chose de sensé compte tenu des informations que vous lui avez fournies. Tout d'abord, R note que le cadre de données que vous lui avez fourni ne comporte que deux colonnes, et il suppose donc que vous souhaitez tracer une colonne par rapport à l'autre."
+
+- Class: text
+  Output: "Deuxièmement, comme nous ne fournissons pas d'étiquettes pour les deux axes, R utilise les noms des colonnes. Troisièmement, il crée des repères d'axe à des nombres ronds et les étiquette en conséquence. Quatrièmement, il utilise les autres valeurs par défaut fournies dans plot()."
+
+- Class: text
+  Output: "Nous allons maintenant passer un peu de temps à explorer plot, mais la plupart des sujets abordés ici s'appliqueront à la plupart des autres fonctions graphiques de R. Notez que \"plot\" est l'abréviation de scatterplot (nuage de points)."
+
+- Class: cmd_question
+  Output: "Consultez la page d'aide de plot()."
+  CorrectAnswer: ?plot
+  AnswerTests: any_of_exprs('?plot', 'help(plot)')
+  Hint: "Tapez ?plot ou help(plot) pour afficher une page d'aide pour plot()."
+
+- Class: text
+  Output: "La page d'aide de plot() met en évidence les différents arguments que la fonction peut prendre. Les deux plus importants sont x et y, les variables qui seront tracées. Pour la prochaine série de questions, incluez les noms des arguments dans vos réponses. En d'autres termes, ne tapez pas plot(cars$speed, cars$dist), bien que cela fonctionne. Utilisez plutôt plot(x = cars$speed, y = cars$dist)."
+
+- Class: cmd_question
+  Output: "Utilisez la commande plot() pour afficher la vitesse sur l'axe x et la distance sur l'axe y à partir de la base de données des voitures. Utilisez la forme de la commande plot dans laquelle les vecteurs sont explicitement transmis en tant qu'arguments pour x et y."
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist)
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist)')
+  Hint: "Tapez plot(x = cars$speed, y = cars$dist) pour créer le graphique."
+
+- Class: text
+  Output: "Notez que cette méthode produit une réponse légèrement différente de plot(cars). Dans ce cas, R n'est pas sûr de ce que vous voulez utiliser comme étiquettes sur les axes, il utilise donc simplement les arguments que vous lui passez, nom du cadre de données et signes du dollar inclus."
+
+- Class: text
+  Output: "Notez qu'il existe d'autres façons d'appeler la commande plot, c'est-à-dire en utilisant l'interface \"formula\" (formule). Par exemple, nous obtenons un graphique similaire au graphique ci-dessus avec plot(dist ~ speed, cars). Cependant, nous attendrons plus tard dans la leçon avant d'utiliser l'interface \"formula\"."
+  
+- Class: cmd_question
+  Output: "Utilisez la commande plot() pour afficher la distance sur l'axe des x et la vitesse sur l'axe des y à partir de la base de données des voitures. C'est l'inverse de ce que nous avons fait ci-dessus."
+  CorrectAnswer: plot(x = cars$dist, y = cars$speed)
+  AnswerTests: omnitest(correctExpr='plot(x = cars$dist, y = cars$speed)')
+  Hint: "Tapez plot(x = cars$dist, y = cars$speed) pour créer le graphique."
+
+- Class: text
+  Output: "Il est probablement plus logique que la vitesse soit placée sur l'axe des x puisque la distance d'arrêt est une fonction de la vitesse plutôt que l'inverse. Par conséquent, pour le reste des questions de cette partie de la leçon, attribuez toujours les arguments en conséquence."
+
+- Class: text
+  Output: "En fait, vous pouvez supposer que les réponses aux prochaines questions sont toutes de la forme plot(x = cars$speed, y = cars$dist, ...) mais avec différents arguments utilisés à la place des ..."
+
+- Class: cmd_question
+  Output: "Recréer le graphique avec l'étiquette de l'axe des x réglée sur \"Vitesse\"." 
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist, xlab = "Vitesse")
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist, xlab = "Vitesse")')
+  Hint: "Tapez plot(x = cars$speed, y = cars$dist, xlab = \"Vitesse\") pour créer le graphique."
+
+- Class: cmd_question
+  Output: "Recréer le graphique avec l'étiquette de l'axe des y réglée sur \"Distance d'arrêt\"."
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist, ylab = "Distance d\'arrêt")
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist, ylab = "Distance d\'arrêt")')
+  Hint: "Tapez plot(x = cars$speed, y = cars$dist, ylab = \"Distance d'arrêt\") pour créer le graphique."
+
+- Class: cmd_question
+  Output: "Recréer le graphique avec \"Vitesse\" et \"Distance d'arrêt\" comme étiquettes d'axe."
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist, xlab = "Vitesse", ylab = "Distance d\'arrêt")
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist, xlab = "Vitesse", ylab = "Distance d\'arrêt")')
+  Hint: "Tapez plot(x = cars$speed, y = cars$dist, xlab = \"Vitesse\", ylab = \"Distance d'arrêt\") pour créer le graphique."
+
+- Class: text
+  Output: "La raison pour laquelle plots(cars) a fonctionné au début de la leçon est que R était suffisamment intelligent pour savoir que le premier élément (c'est-à-dire la première colonne) de cars devait être assigné à l'argument x et le deuxième élément à l'argument y. Pour économiser de la frappe, la prochaine série de réponses sera de la forme plot(cars, ...) avec différents arguments ajoutés."
+
+- Class: text
+  Output: "Pour chaque question, nous ne voulons qu'un seul argument supplémentaire à la fois. Bien entendu, vous pouvez passer plus d'un argument lorsque vous réalisez un projet réel."
+
+- Class: cmd_question
+  Output: "Plot cars avec un titre principal de \"Mon graphique\". Notez que l'argument pour le titre principal est \"main\" et non \"title\"."
+  CorrectAnswer: plot(cars, main = "Mon graphique")
+  AnswerTests: omnitest(correctExpr='plot(cars, main = "Mon graphique")')
+  Hint: "Tapez plot(cars, main = \"Mon graphique\") pour créer le graphique."
+
+- Class: cmd_question
+  Output: "Plot cars avec le sous-titre \"Sous-titre de mon graphique\"."
+  CorrectAnswer: plot(cars, sub = "Sous-titre de mon graphique")
+  AnswerTests: omnitest(correctExpr='plot(cars, sub = "Sous-titre de mon graphique")')
+  Hint: "Tapez plot(cars, sub = \"Sous-titre de mon graphique\") pour créer le graphique."
+
+- Class: text
+  Output: "La page d'aide de plot (?plot) ne couvre qu'un petit nombre des nombreux arguments qui peuvent être passés à plot() et à d'autres fonctions graphiques. Pour commencer à explorer les nombreuses autres options, consultez ?par. Examinons quelques-unes des options les plus couramment utilisées. Continuez à utiliser plot(cars, ...) comme réponse de base à ces questions."
+
+- Class: cmd_question
+  Output: "Tracer les voitures de manière à ce que les points tracés soient colorés en rouge (utiliser col = 2 pour obtenir cet effet)."
+  CorrectAnswer: plot(cars, col = 2)
+  AnswerTests: omnitest(correctExpr='plot(cars, col = 2)')
+  Hint: "Tapez plot(cars, col = 2) pour créer le graphique."
+
+- Class: cmd_question
+  Output: "Tracez les voitures en limitant l'axe des x aux valeurs 10 à 15. (Utilisez xlim = c(10, 15) pour obtenir cet effet)."
+  CorrectAnswer: plot(cars, xlim = c(10, 15))
+  AnswerTests: omnitest(correctExpr='plot(cars, xlim = c(10, 15))')
+  Hint: "Tapez plot(cars, xlim = c(10, 15)) pour créer le graphique."
+
+- Class: text
+  Output: "Vous pouvez également modifier la forme des symboles dans le tracé. La page d'aide pour les points (?points) fournit les détails."
+
+- Class: cmd_question
+  Output: "Tracez les voitures à l'aide de triangles. (Utilisez pch = 2 pour obtenir cet effet)."
+  CorrectAnswer: plot(cars, pch = 2)
+  AnswerTests: omnitest(correctExpr='plot(cars, pch = 2)')
+  Hint: "Tapez plot(cars, pch = 2) pour créer le graphique."
+
+- Class: text
+  Output: "Des arguments tels que \"col\" et \"pch\" peuvent ne pas sembler très intuitifs. Et c'est parce qu'ils ne le sont pas ! C'est pourquoi la plupart des gens utilisent des packages plus modernes, comme ggplot2, pour créer leurs graphiques dans R."
+
+- Class: text
+  Output: "Il est cependant utile d'avoir une introduction aux graphiques de base car de nombreux idiomes dans lattice et ggplot2 sont modelés sur eux."
+
+- Class: text
+  Output: "Examinons maintenant d'autres fonctions des graphiques de base qui peuvent s'avérer utiles, en commençant par les diagrammes en boîte (boxplots)."
+
+- Class: cmd_question
+  Output: "Charger la trame de données mtcars." 
+  CorrectAnswer: data(mtcars)
+  AnswerTests: omnitest(correctExpr='data(mtcars)')
+  Hint: "Tapez data(mtcars) pour charger les données."
+
+- Class: text
+  Output: "Chaque fois que vous chargez un nouveau cadre de données, vous devez l'explorer avant de l'utiliser. Au milieu d'une leçon de swirl, tapez simplement play(). Cela suspend temporairement la leçon (sans perdre le travail déjà effectué) et vous permet de lancer des commandes telles que dim(mtcars) et head(mtcars). Une fois que vous avez fini d'examiner les données, tapez simplement nxt() et la leçon reprendra là où elle s'est arrêtée."
+
+- Class: cmd_question
+  Output: "Consultez la page d'aide de boxplot()."
+  CorrectAnswer: ?boxplot
+  AnswerTests: any_of_exprs('?boxplot', 'help(boxplot)')
+  Hint: "Tapez ?boxplot ou help(boxplot) pour afficher une page d'aide contenant des détails sur boxplot."
+
+- Class: text
+  Output: "Au lieu d'ajouter les colonnes de données directement comme arguments d'entrée, comme nous l'avons fait avec plot(), il est souvent pratique de transmettre l'ensemble des données. C'est ce que permet l'argument \"data\" de boxplot()."
+
+- Class: text
+  Output: "boxplot(), comme de nombreuses fonctions R, prend également un argument \"formula\", généralement une expression avec un tilde (\"~\") qui indique la relation entre les variables d'entrée. Cela vous permet d'entrer quelque chose comme mpg ~ cyl pour tracer la relation entre cyl (nombre de cylindres) sur l'axe des x et mpg (miles par gallon) sur l'axe des y."
+
+- Class: cmd_question
+  Output: "Utilisez boxplot() avec formula = mpg ~ cyl et data = mtcars pour créer un boxplot."
+  CorrectAnswer: boxplot(formula = mpg ~ cyl, data = mtcars)
+  AnswerTests: omnitest(correctExpr='boxplot(formula = mpg ~ cyl, data = mtcars)')
+  Hint: "Tapez boxplot(formula = mpg ~ cyl, data = mtcars) pour créer le graphique."
+
+- Class: text
+  Output: "Le graphique montre que la consommation de carburant est beaucoup plus faible pour les voitures ayant plus de cylindres. Notez que nous pouvons utiliser le même ensemble d'arguments que nous avons exploré avec plot() ci-dessus pour ajouter des étiquettes d'axe, des titres, etc."
+
+- Class: text
+  Output: "Lorsque l'on étudie une seule variable, les histogrammes sont un outil utile. hist() est la fonction R associée. Comme plot(), hist() est plus facile à utiliser en passant un seul vecteur." 
+
+- Class: cmd_question
+  Output: "Utilisez hist() avec le vecteur mtcars$mpg pour créer un histogramme."
+  CorrectAnswer: hist(mtcars$mpg)
+  AnswerTests: any_of_exprs('hist(mtcars$mpg)', 'hist(x = mtcars$mpg)')
+  Hint: "Tapez hist(mtcars$mpg) pour créer le graphique."
+
+- Class: text
+  Output: "Dans cette leçon, vous avez appris à travailler avec des graphiques de base dans R. Le meilleur moyen d'y parvenir est d'étudier le package ggplot2. Si vous souhaitez explorer d'autres éléments des graphiques de base, cette page web (http://www.ling.upenn.edu/~joseff/rstudy/week4.html) fournit une vue d'ensemble utile."
+
